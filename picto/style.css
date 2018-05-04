@@ -1,0 +1,75 @@
+body {
+  /*font-family: 'Segoe UI Light', sans-serif;*/
+  font-family: Calibri, sans-serif;
+  font-size: 24px;
+}
+
+.picto {
+  border-radius: 5px;
+  width: 20px;
+  height: 40px;
+  display: inline-block;
+  margin: 2px;
+}
+
+#picto {
+  float: right;
+}
+
+#success-rate {
+  font-size: 14px;
+}
+
+#expected, #unexpected {
+  text-align: center;
+  float: left;
+}
+
+#unexpected {
+  margin-left: 1px;
+}
+
+#unexpected-content {
+  /*background-color: #FFDBE1;*/
+  text-align: center;
+}
+
+/*#unexpected-content .picto {
+  background-color: #BE7DFF;
+}*/
+
+#expected-content {
+  text-align: center;
+  width: 100px;
+  /*background-color: #F9F2FF;*/
+/*  border: 2px solid #EAD9FA;
+  border-radius: 6px;
+*/}
+
+#expected label {
+  color: #BE7DFF;
+  font-size: 12px;
+}
+
+#unexpected label {
+  color: #FF0000;
+  font-size: 12px;
+}
+
+label {
+  margin-bottom: 0px;
+  display: block;
+}
+
+.univ {
+  color: #555555;
+  font-family: 'Segoe UI Light';
+  margin-bottom: 10px;
+}
+
+.prodi {
+  font-size: 16px;
+  color: #555555;
+  font-family: 'Segoe UI Light';
+  margin-bottom: 16px;
+}

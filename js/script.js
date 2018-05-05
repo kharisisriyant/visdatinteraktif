@@ -355,6 +355,8 @@ function recolorMapWithCondition(condition) {
   var currentProdi = null;
   var totalTerima = 0;
   var totalPeminat = 0;
+  var prodiSet = [];
+  console.log("Recolor");
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
       populationData[d.Provinsi] = 0
@@ -383,7 +385,12 @@ function recolorMapWithCondition(condition) {
     populationData[d.Provinsi] += parseInt(d.Jumlah);
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
     totalTerima += parseInt(d.Jumlah);
-    totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+    console.log(d.Prodi)
+    console.log(totalPeminat)
+    if (prodiSet[d.Prodi] == null) {
+        totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+        prodiSet[d.Prodi] = true;
+    }
   });
   populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
   drawPictos(currentUniv, currentProdi, totalTerima, totalPeminat);

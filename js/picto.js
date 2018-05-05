@@ -86,10 +86,3 @@ function degToRad (deg) {
   return deg * Math.PI / 180;
 }
 
-$(document).ready(function() {
-  drawPictos("Institut Teknologi Bandung", "Sekolah Teknik Elektro dan Informatika", 200, 4000);
-  setTimeout(function(){
-    drawPictos("Universitas Indonesia", "Computer Science", 100, 3500);
-  }, 10000);
-  
-});

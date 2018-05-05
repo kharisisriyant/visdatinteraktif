@@ -148,7 +148,6 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .showXAxis(true)
       ;
 
-      console.log('masuk');
       chart.reduceXTicks(false).staggerLabels(true);
 
       chart.yAxis

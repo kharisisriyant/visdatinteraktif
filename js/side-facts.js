@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('.not-search-selectbox').select2({
     minimumResultsForSearch: Infinity
   });
-  updateTopProdiChart($('#top-prodi-amount').val(), $('#top-prodi-select').val(), $('#top-prodi-base').val(), $('#top-prodi-ptn').val());
+  // updateTopProdiChart($('#top-prodi-amount').val(), $('#top-prodi-select').val(), $('#top-prodi-base').val(), $('#top-prodi-ptn').val());
   updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
 })
 
@@ -140,14 +140,15 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .x(function(d) { return d.label })
           .y(function(d) { return d.value })
           .duration(300)
-          .margin({bottom: 100, left: 70})
+          // .margin({bottom: 100, left: 70})
           .groupSpacing(0.1)
-          .width(400)
-          .height(250)
+          // .width(100)
+          // .height(300)
           .showYAxis(true)
           .showXAxis(true)
       ;
 
+      console.log('masuk');
       chart.reduceXTicks(false).staggerLabels(true);
 
       chart.yAxis

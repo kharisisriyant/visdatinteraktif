@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  $('.js-example-basic-single').select2();
+  $('.not-search-selectbox').select2({
+    minimumResultsForSearch: Infinity
+  });
   updateTopProdiChart($('#top-prodi-amount').val(), $('#top-prodi-select').val(), $('#top-prodi-base').val(), $('#top-prodi-ptn').val());
   updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
 })

@@ -1,8 +1,10 @@
 <html>
 <head>
   <!-- CSS Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="css/nv.d3.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  
 </head>
 <body>
   <h1>ini akan menjadi Side facts</h1>
@@ -13,25 +15,25 @@
     </div>
     <div id="top-prodi-filter">
       Tampilkan
-      <select id="top-prodi-amount">
+      <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-amount">
         <option value="3">3</option>
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="50">50</option>
       </select>
-      <select id="top-prodi-select">
+      <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-select">
         <option value="1">Teratas</option>
         <option value="0">Terbawah</option>
       </select>
       program studi berdasarkan
-      <select id="top-prodi-base">
+      <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-base">
         <option value="1">Jumlah Peserta yang Diterima</option>
         <option value="2">Jumlah Peminat</option>
         <option value="3">Keketatan</option>
       </select>
       dari
-      <select id="top-prodi-ptn">
+      <select class="js-example-basic-single js-states form-control" id="top-prodi-ptn">
         <option value="0">Semua PTN</option>
         <option value="10">ISBI ACEH</option>
         <option value="11">UNIVERSITAS SYIAH KUALA</option>
@@ -132,7 +134,7 @@
     </div>
     <div id="statistik-kelompok-pilihan-ujian-filter">
       Tampilkan chart berdasarkan kelompok:
-      <select id="statistik-kelompok-pilihan-ujian-select">
+      <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
         <option value="1">Pilihan</option>
         <option value="2">Ujian</option>
       </select>
@@ -186,7 +188,7 @@
 
   <!-- Script -->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
   <script type="text/javascript" src="js/nv.d3.js"></script>
   <script type="text/javascript" src="js/side-facts.js"></script>

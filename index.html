@@ -16,7 +16,7 @@
         
         <div class="container is-fluid">
             <div class="tile is-ancestor">
-                <div class="tile is-parent is-7 is-vertical">
+                <div class="tile is-parent is-8 is-vertical">
                     <div class="tile is-child">
                         <div id="idnMap"></div>
                     </div>
@@ -50,6 +50,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="tile is-parent is-4 is-vertical">
+                    <div class="tile is-child" id="picto">
+                        <div class="univ"></div>
+                        <div class="prodi"></div>
+                        <div class="picto-content">
+                            <div id="expected">
+                                <label>Diterima</label>
+                                <div id="expected-content">
+                                </div>
+                            </div>
+                            <div id="unexpected">
+                                <label>&nbsp;&nbsp;Mendaftar</label>
+                                <div id="unexpected-content">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="success-rate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="templates" style="display: none;">
+            <div class="picto" style="display: none;">
+                <img src="img/clip.png" height="100%">
             </div>
         </div>
         <!-- Data Source -->
@@ -69,5 +94,6 @@
         <script type="text/javascript" src="js/d3/d3.js"></script>
         <script type="text/javascript" src="js/d3/d3.min.js"></script>
         <script type="text/javascript" src="js/nv.d3.js"></script>
+        <script type="text/javascript" src="js/picto.js"></script>
     </body>
 </html>

@@ -6,6 +6,7 @@ $(document).ready(function() {
   /************************************************************************************************/
   /*                            FOR statistik-kelompok-pilihan-ujian                              */
   /************************************************************************************************/
+  
   var chart
   nv.addGraph(function() {
     chart = nv.models.multiBarChart()
@@ -85,6 +86,7 @@ $(document).ready(function() {
     ]
 
   }
+})
 
 
   /************************************************************************************************/
@@ -109,5 +111,4 @@ $(document).ready(function() {
       // Show the current tab, and add an "active" class to the button that opened the tab
       document.getElementById(listName).style.display = "block";
       evt.currentTarget.className += " active";
-  } 
-})
+  }

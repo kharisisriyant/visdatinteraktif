@@ -5,7 +5,7 @@ var expected      = 1325;
 var participated  = 1755;
 var $univ = $('.univ')[0];
 var $prodi = $('.prodi')[0];
-var $successRate = $('#successRate');
+var $successRate = $('.success-rate')[0];
 var $picto = $($('#templates .picto')[0]);
 
 function getPct (acceptedNum, registeredNum) {
@@ -36,13 +36,9 @@ function displayPictogram(num) {
     //   $unexp.append("<br>");
     // }
     var clone = $picto.clone();
-    cloneArr.push(clone);
     $unexp.append(clone);
 
-    clone.delay(100 * (i%5)).fadeIn();
-  }
-  for (var i = 0; i < num; i++) {
-    cloneArr[i].delay(200 * i).fadeIn();
+    clone.delay(100 * (i/5)).fadeIn();
   }
 }
 
@@ -71,13 +67,16 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   }
 
   displayPictogram(numPictoOver);
+
+  var penjelasan = "<b>" + acceptedNum + "</b> <span>dari <b>" + registeredNum + "</b><br>lolos";
+  console.log(penjelasan);
+  $successRate.innerHTML = penjelasan;
   
   // $('#numRepr').html(' = ' + numPerPicto + ' participants');
   $exp.attr("title", acceptedNum + " orang diterima");
   $unexp.attr("title", registeredNum + " orang mendaftar");
   var rate =  "" + (acceptedNum/registeredNum);
   console.log(rate);
-  $successRate.innerHTML = "" + rate;
 }
 
 function degToRad (deg) {

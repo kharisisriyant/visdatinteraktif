@@ -82,7 +82,8 @@ body {
     border: 1px solid #ccc;
     border-top: none;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
-    overflow-y: scroll;
+    overflow-y: auto;
+    font-size: 12px;
 }
 
 /* Go from zero to full opacity */
@@ -180,4 +181,12 @@ body {
 label {
   margin-bottom: 0px;
   display: block;
+}
+
+.is-child {
+	font-size: 12px;
+}
+
+.js-example-basic-single option{
+	font-size: 12px;
 }

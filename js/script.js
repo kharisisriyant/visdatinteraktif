@@ -7,6 +7,8 @@ Array.prototype.removeIf = function(callback) {
     }
 };
 
+$('.js-example-basic-single').select2();
+
 var width = window.innerWidth,
     height = window.innerHeight,
     populationDomain;

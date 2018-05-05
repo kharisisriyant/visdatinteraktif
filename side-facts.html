@@ -6,24 +6,51 @@
 </head>
 <body>
   <h1>ini akan menjadi Side facts</h1>
-   <!-- STATISTIK PTN DALAM BANYAKNYA DITERIMA, PEMINAT, DAN KEKETATAN (Horizontal Bar Chart) -->
-  <div id="top-univ">
-    <div id="top-univ-title">
+   <!-- STATISTIK PRODI DALAM BANYAKNYA DITERIMA, PEMINAT, DAN KEKETATAN (Horizontal Bar Chart) -->
+  <div id="top-prodi">
+    <div id="top-prodi-title">
+      <h2>Statistik Prodi</h2>
     </div>
-    <div id="top-univ-filter">
-      <!-- filter: jumlah diterima, jumlah peminat, keketatan -->
+    <div id="top-prodi-filter">
+      Tampilkan
+      <select id="top-prodi-amount">
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+      <select id="top-prodi-select">
+        <option value="1">Teratas</option>
+        <option value="0">Terbawah</option>
+      </select>
+      program studi berdasarkan
+      <select id="top-prodi-base">
+        <option value="1">Jumlah Peserta yang Diterima</option>
+        <option value="2">Jumlah Peminat</option>
+        <option value="3">Keketatan</option>
+      </select>
+      dari
+      <select id="top-prodi-univ">
+        <option value="0">Semua Universitas</option>
+      </select>
     </div>
-    <div id="top-univ-chart">
-      <svg id="top-univ-chart"></svg>
+    <div id="top-prodi-chart">
+      <svg height="250"></svg>
     </div>
   </div>
 
   <!-- STATISTIK KELOMPOK PILIHAN DAN KELOMPOK UJIAN (Grouped Bar Chart) -->
   <div id="statistik-kelompok-pilihan-ujian">
     <div id="statistik-kelompok-pilihan-ujian-title">
+      <h2>Statistik Pengelompokan Pendaftar</h2>
     </div>
     <div id="statistik-kelompok-pilihan-ujian-filter">
-      <!-- filter: kelompok pilihan atau kelompok ujian-->
+      Tampilkan chart berdasarkan kelompok:
+      <select id="statistik-kelompok-pilihan-ujian-select">
+        <option value="1">Pilihan</option>
+        <option value="2">Ujian</option>
+      </select>
     </div>
     <div id="statistik-kelompok-pilihan-ujian-chart">
       <svg></svg>

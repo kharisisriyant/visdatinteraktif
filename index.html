@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>SBMPTN 2017</title>
-        <!-- Bulma CSS -->
-        <link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
         <!-- Select2 CSS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+        <!-- Bulma CSS -->
+        <link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        
         <!-- CSS Stylesheet -->
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/nv.d3.css">
@@ -33,13 +34,16 @@
                                     Semua Universitas
                                 </a>
                             </div>
-                            <p class="control">
-                                <span class="select">
-                                    <select class="js-example-basic-single js-states form-control" id="prodSelect">
+                            
+                        </div>
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <span class="select is-fullwidth">
+                                    <select class="js-example-basic-single js-states" id="prodSelect" style="width: 100%">
                                         <option>Semua Prodi</option>
                                     </select>
                                 </span>
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div class="tile is-child box" style="padding: 0;">
@@ -79,8 +83,6 @@
                 <img src="img/clip.png" height="100%">
             </div>
         </div>
-        <!-- Data Source -->
-        <p class="subtitle has-text-centered">Source: <a href="http://kemendagri.go.id/" target="_blank">Kemendagri</a>, 2015 Population Estimate.</p>
         <!-- D3.js Source -->
         <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>

@@ -75,7 +75,8 @@ function KodeProdi(kodeProdiResult) {
     }
     this[d["Kode Universitas"]].prodi.push({
       kode: d["Kode Prodi"],
-      name: d["Nama Prodi"]
+      name: d["Nama Prodi"],
+      jumlahPeminat: d["Data Peminat"]
     })
   }, this.dataByKodePTN);
   this.dataByKodePTN.removeIf(function(d) {
@@ -89,7 +90,8 @@ function KodeProdi(kodeProdiResult) {
         kode: d["Kode Universitas"],
         website: d["Website Universitas"]
       },
-      name: d["Nama Prodi"]
+      name: d["Nama Prodi"],
+      jumlahPeminat: d["Data Peminat"]
     }
   }, this.dataByKodeProdi);
 }
@@ -293,8 +295,8 @@ function fuzzySearch(searchString) {
   var fuseOptions = {
     shouldSort: true,
     threshold: 0,
-    // tokenize: true,
-    location: 0,
+    tokenize: true,
+    // location: 0,
     distance: 2,
     maxPatternLength: 32,
     minMatchCharLength: 1,
@@ -348,6 +350,10 @@ function registerSelectProdiDropdown() {
 function recolorMapWithCondition(condition) {
   var populationData = {};
   var maxPop = 0;
+  var currentUniv = null;
+  var currentProdi = null;
+  var totalTerima = 0;
+  var totalPeminat = 0;
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
       populationData[d.Provinsi] = 0
@@ -358,11 +364,28 @@ function recolorMapWithCondition(condition) {
     if (!condition(d.Prodi)) {
       return;
     }
+    if (currentUniv == null) {
+      currentUniv = kodeProdi.dataByKodeProdi[d.Prodi].univ.name;
+    } else {
+      if (currentUniv != "Semua Universitas" && currentUniv != kodeProdi.dataByKodeProdi[d.Prodi].univ.name) {
+        currentUniv = "Semua Universitas"
+      }
+    }
+
+    if (currentProdi == null) {
+      currentProdi = kodeProdi.dataByKodeProdi[d.Prodi].name;
+    } else {
+      if (currentProdi != "Semua Prodi" && currentProdi != kodeProdi.dataByKodeProdi[d.Prodi].name) {
+        currentProdi = "Semua Prodi"
+      }
+    }
     populationData[d.Provinsi] += parseInt(d.Jumlah);
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
+    totalTerima += parseInt(d.Jumlah);
+    totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
   });
   populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
-
+  drawPictos(currentUniv, currentProdi, totalTerima, totalPeminat);
 
   g.selectAll("path")
     .transition().duration(500)

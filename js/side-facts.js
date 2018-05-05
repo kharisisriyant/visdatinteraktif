@@ -1,11 +1,12 @@
 $(document).ready(function() {
+  updateTopProdiChart($('#top-prodi-amount').val(), $('#top-prodi-select').val(), $('#top-prodi-base').val(), $('#top-prodi-ptn').val());
   updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
 })
 
 /************************************************************************************************/
-/*                                          FOR top-prodi                                        */
+/*                                          FOR top-prodi                                       */
 /************************************************************************************************/
-var updateTopUnivChart = function(amount, select, base, univ){
+var updateTopProdiChart = function(amount, select, base, ptn){
   var data;
   var chart;
   nv.addGraph(function() {

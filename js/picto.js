@@ -49,11 +49,6 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   var pct     = getPct();
     // Draw the # that participated
   var numParticipated = 1;
-  for (var i = 0; i < numParticipated; ++i) {
-    clone = $picto.clone()
-    $exp.append(clone);
-    clone.fadeIn();
-  }
   
   var numPerPicto = acceptedNum;
   console.log("acceptedNum, registeredNum: " + acceptedNum + ", " + registeredNum);
@@ -66,6 +61,14 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
     $prodi.innerHTML = prodiName;
   }
 
+  if (numPictoOver > 10) {
+    $picto.attr("style", "display: none; height:30px; width:15px")
+  }
+  for (var i = 0; i < numParticipated; ++i) {
+    clone = $picto.clone()
+    $exp.append(clone);
+    clone.fadeIn();
+  }
   displayPictogram(numPictoOver);
 
   var penjelasan = "<b>" + acceptedNum + "</b> <span>dari <b>" + registeredNum + "</b><br>lolos";

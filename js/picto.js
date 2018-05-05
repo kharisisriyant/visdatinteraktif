@@ -7,6 +7,7 @@ var $univ = $('.univ')[0];
 var $prodi = $('.prodi')[0];
 var $successRate = $('.success-rate')[0];
 var $picto = $($('#templates .picto')[0]);
+var $pictoContent = $('#picto-content');
 
 function getPct (acceptedNum, registeredNum) {
   return Math.round((participated / expected) * 100);
@@ -61,7 +62,9 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
     $prodi.innerHTML = prodiName;
   }
 
-  if (numPictoOver > 10) {
+  if (numPictoOver > 100) {
+    $picto.attr("style", "display: none; height:8px; width:4px")
+  } else if (numPictoOver > 10) {
     $picto.attr("style", "display: none; height:30px; width:15px")
   }
   for (var i = 0; i < numParticipated; ++i) {
@@ -76,8 +79,9 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   $successRate.innerHTML = penjelasan;
   
   // $('#numRepr').html(' = ' + numPerPicto + ' participants');
-  $exp.attr("title", acceptedNum + " orang diterima");
-  $unexp.attr("title", registeredNum + " orang mendaftar");
+  $pictoContent.attr("title", "1 : " + numPictoOver);
+  // $exp.attr("title", acceptedNum + " orang diterima");
+  // $unexp.attr("title", registeredNum + " orang mendaftar");
   var rate =  "" + (acceptedNum/registeredNum);
   console.log(rate);
 }

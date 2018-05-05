@@ -50,7 +50,7 @@ var path = d3.geoPath().projection(projection);
 d3.queue()
   .defer(d3.json, "data/IDN.json")
   .defer(d3.json, "data/DatabaseSBMPTN2017.json")
-  .defer(d3.json, "data/kodeProdi.json")
+  .defer(d3.json, "data/KodeProdiPeminat.json")
   .defer(d3.tsv, "data/logo.tsv")
   .await(ready);
 var sbmptnData;
@@ -94,7 +94,10 @@ function KodeProdi(kodeProdiResult) {
 
 // Callback function
 function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURLResult) {
-  if (error) throw error;
+  if (error) {
+    console.log(error);
+    throw error;
+  }
 
   logoURLResult.forEach(function(d) {
     logoURL[d.NamaUniv] = d.ImgURL;

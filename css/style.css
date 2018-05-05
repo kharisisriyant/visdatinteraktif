@@ -5,10 +5,8 @@ body {
 }
 
 .frame {
-  width: 60%;
   height: 200px;
   padding: 0;
-  border: 1px solid gray;
 }
 
 .frame .slidee {
@@ -27,7 +25,6 @@ body {
 }
 
 .scrollbar {
-  width: 640px;
   height: 5px;
 }
 

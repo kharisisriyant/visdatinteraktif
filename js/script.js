@@ -29,7 +29,7 @@ var populationColor = d3.scaleThreshold()
 var projection = d3.geoMercator()
                     .center([118.25, -5])
                     .scale(width * 0.5)
-                    .translate([width / 3, height / 4]);
+                    .translate([width / 3 - 20, height / 4]);
 
 var path = d3.geoPath().projection(projection);
 
@@ -37,11 +37,43 @@ var path = d3.geoPath().projection(projection);
 d3.queue()
   .defer(d3.json, "data/IDN.json")
   .defer(d3.json, "data/DatabaseSBMPTN2017.json")
+  .defer(d3.json, "data/kodeProdi.json")
   .await(ready);
 var sbmptnData;
+var kodeProdi;
+function KodeProdi(kodeProdiResult){
+  this.dataByKodePTN = [];
+  kodeProdiResult.forEach(function(d) {
+    if (this[d["Kode Universitas"]] == null) {
+      this[d["Kode Universitas"]] = {
+        name: d["Nama Universitas"],
+        website: d["Website Universitas"],
+        prodi: []
+      }
+    }
+    this[d["Kode Universitas"]].prodi.push({
+      kode: d["Kode Prodi"],
+      name: "Nama Prodi"
+    })
+  }, this.dataByKodePTN);
+  this.dataByKodeProdi = {};
+  kodeProdiResult.forEach(function(d) {
+    this[d["Kode Prodi"]] = {
+      univ: {
+        name: d["Nama Universitas"],
+        kode: d["Kode Universitas"],
+        website: d["Website Universitas"]
+      },
+      name: d["Nama Prodi"]
+    }
+  }, this.dataByKodeProdi);
+}
+
 // Callback function
-function ready(error, idnSpatialData, sbmptnDataResult) {
+function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
   if (error) throw error;
+
+  kodeProdi = new KodeProdi(kodeProdiResult);
 
   // Population data
   var populationData = {};
@@ -87,6 +119,8 @@ function ready(error, idnSpatialData, sbmptnDataResult) {
     .text(function(d) {
       return d.properties.NAME_1 + " : " + populationData[d.properties.NAME_1];
     });
+
+  initSly();
 }
 
 d3.select(window).on("resize", resize);
@@ -104,13 +138,19 @@ function resize() {
 
   d3.selectAll("path")
     .attr("d", path);
+  slyelement.obj.reload();
 }
+
+function processKodeProdi(kodeProdiResult) {
+  
+}
+
 var slyelement = {
   obj: {},
   el: '.frame',
   options: {
     horizontal: 1,
-    itemNav: 'forceCentered',
+    itemNav: 'basic',
     smart: 1,
     activateMiddle: 1,
     activateOn: 'click',
@@ -126,13 +166,13 @@ var slyelement = {
   }
 };
 
-
-$(function(){
+function initSly() {
   slyelement.obj = new Sly($(slyelement.el), slyelement.options);
   
   slyelement.obj.init();
-});
-
-$(window).resize(function(e) {
-  slyelement.obj.reload();
-});
+  console.log(kodeProdi.dataByKodePTN)
+  kodeProdi.dataByKodePTN.forEach(function(d) {
+    slyelement.obj.add('<li><p class="content has-text-centered">' + d.name + '</p></li>');
+  })
+  
+}

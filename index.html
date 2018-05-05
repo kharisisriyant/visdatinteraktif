@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Indonesia</title>
-
-    <!-- Bulma CSS -->
-    <link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css">
-
-    <!-- CSS Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/nv.d3.css">
-  </head>
-  <body>
-    <!-- Title -->
-    <h1 class="title has-text-centered">Indonesia</h1>
-    <h2 class="subtitle has-text-centered">Population Map</h2>
-    <div id="idnMap"></div>
-    <div class="frame">
-        <ul class="slidee">
-            <li>sad</li>
-            <li>dsa</li>
-            <li>asd</li>
-            <li>sad</li>
-            <li>dsa</li>
-            <li>asd</li>
-        </ul>
-    </div>
-
-    <div class="scrollbar">
-        <div class="handle"></div>
-    </div>
-
-
-
-    <!-- Data Source -->
-    <p class="subtitle has-text-centered">Source: <a href="http://kemendagri.go.id/" target="_blank">Kemendagri</a>, 2015 Population Estimate.</p>
-
-    <!-- D3.js Source -->
-    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="https://d3js.org/topojson.v3.min.js"></script>
-
-    <script
-      src="https://code.jquery.com/jquery-1.12.4.min.js"
-      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-      crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="https:/cdn.rawgit.com/darsain/sly/master/dist/sly.js"></script>
-
-    <!-- Script -->
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/d3/d3.js"></script>
-    <script type="text/javascript" src="js/d3/d3.min.js"></script>
-    <script type="text/javascript" src="js/nd.d3.js"></script>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title>SBMPTN 2017</title>
+        <!-- Bulma CSS -->
+        <link rel="stylesheet"  type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+        <!-- CSS Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/nv.d3.css">
+    </head>
+    <body>
+        <!-- Title -->
+        <h1 class="title has-text-centered">SBMPTN 2017</h1>
+        <h2 class="subtitle has-text-centered">Population Map</h2>
+        
+        <div class="container is-fluid">
+            <div class="tile is-ancestor">
+                <div class="tile is-parent is-7 is-vertical">
+                    <div class="tile is-child">
+                        <div id="idnMap"></div>
+                    </div>
+                    
+                    <div class="tile is-child">
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" type="text" placeholder="Cari Universitas">
+                            </div>
+                            <div class="control">
+                                <a class="button is-info">
+                                    Cari
+                                </a>
+                            </div>
+                            <div class="control">
+                                <a class="button is-primary is-outlined">
+                                    Semua Univesitas
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile is-child">
+                        <div class="frame box">
+                            <ul class="slidee">
+                            </ul>
+                        </div>
+                        <div class="scrollbar">
+                            <div class="handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Data Source -->
+        <p class="subtitle has-text-centered">Source: <a href="http://kemendagri.go.id/" target="_blank">Kemendagri</a>, 2015 Population Estimate.</p>
+        <!-- D3.js Source -->
+        <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+        <script src="https://d3js.org/topojson.v3.min.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https:/cdn.rawgit.com/darsain/sly/master/dist/sly.js"></script>
+        <!-- Script -->
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/d3/d3.js"></script>
+        <script type="text/javascript" src="js/d3/d3.min.js"></script>
+        <script type="text/javascript" src="js/nd.d3.js"></script>
+    </body>
 </html>

@@ -50,12 +50,14 @@ var path = d3.geoPath().projection(projection);
 d3.queue()
   .defer(d3.json, "data/IDN.json")
   .defer(d3.json, "data/DatabaseSBMPTN2017.json")
-  .defer(d3.json, "data/kodeProdi.json")
+  .defer(d3.json, "data/KodeProdiPeminat.json")
+  .defer(d3.tsv, "data/logo.tsv")
   .await(ready);
 var sbmptnData;
 var kodeProdi;
+var logoURL = {};
 
-function KodeProdi(kodeProdiResult){
+function KodeProdi(kodeProdiResult) {
   this.dataByKodePTN = [];
   kodeProdiResult.forEach(function(d) {
     if (this[d["Kode Universitas"]] == null) {
@@ -91,8 +93,15 @@ function KodeProdi(kodeProdiResult){
 }
 
 // Callback function
-function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
-  if (error) throw error;
+function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURLResult) {
+  if (error) {
+    console.log(error);
+    throw error;
+  }
+
+  logoURLResult.forEach(function(d) {
+    logoURL[d.NamaUniv] = d.ImgURL;
+  })
 
   kodeProdi = new KodeProdi(kodeProdiResult);
 
@@ -305,7 +314,7 @@ function fuzzySearch(searchString) {
     }
     var el = $('<li>').append(
       $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
-        $('<img>').attr("src","img/logo-univ/itb.png")
+        $('<img>').attr("style","width: auto; height: 100%;").attr("src","img/logo-univ/" + logoURL[d.name])
       ),
       $('<p>', {class: 'content has-text-centered', html: d.name})
     )
@@ -326,7 +335,7 @@ function registerSelectProdiDropdown() {
     var itemIndex = slyelement.obj.rel.activeItem;
     var selectedUniv = $(slyelement.obj.items[itemIndex].el).find("p").text();
     var selectedProdi = $(this).val();
-    if (selectedProdi == "semua"){
+    if (selectedProdi == "all"){
       recolorMapWithCondition(function(k) { return kodeProdi.dataByKodeProdi[k].univ.name == selectedUniv; })
     } else {
       recolorMapWithCondition(function(k) { return k == selectedProdi; })

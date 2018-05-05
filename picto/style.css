@@ -28,11 +28,7 @@ body {
 }
 
 .picto {
-  border-radius: 5px;
-  width: 20px;
-  height: 40px;
   display: inline-block;
-  margin: 2px;
 }
 
 #picto {

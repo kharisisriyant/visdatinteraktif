@@ -24,9 +24,9 @@ var updateTopProdiChart = function(amount, select, base, ptn){
         .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
     chart.yAxis
-        .tickFormat(d3.format('d'));
+        .tickFormat(d3v3.format('d'));
 
-    d3.select('#top-prodi-chart svg')
+    d3v3.select('#top-prodi-chart svg')
         .datum(data)
         .call(chart);
 
@@ -151,11 +151,11 @@ var updateKelompokPilihanUjianChart = function(kelompok){
       chart.reduceXTicks(false).staggerLabels(true);
 
       chart.yAxis
-        .tickFormat(d3.format('d'))
+        .tickFormat(d3v3.format('d'))
         .axisLabel('JUMLAH PENDAFTAR')
       ;
 
-      d3.select('#statistik-kelompok-pilihan-ujian-chart svg')
+      d3v3.select('#statistik-kelompok-pilihan-ujian-chart svg')
           .datum(data)
           .call(chart);
 

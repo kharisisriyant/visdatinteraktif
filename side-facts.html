@@ -1,0 +1,82 @@
+<html>
+<head>
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="css/nv.d3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <h1>ini akan menjadi Side facts</h1>
+   <!-- STATISTIK PTN DALAM BANYAKNYA DITERIMA, PEMINAT, DAN KEKETATAN (Horizontal Bar Chart) -->
+  <div id="top-univ">
+    <div id="top-univ-title">
+    </div>
+    <div id="top-univ-filter">
+      <!-- filter: jumlah diterima, jumlah peminat, keketatan -->
+    </div>
+    <div id="top-univ-chart">
+      <svg id="top-univ-chart"></svg>
+    </div>
+  </div>
+
+  <!-- STATISTIK KELOMPOK PILIHAN DAN KELOMPOK UJIAN (Grouped Bar Chart) -->
+  <div id="statistik-kelompok-pilihan-ujian">
+    <div id="statistik-kelompok-pilihan-ujian-title">
+    </div>
+    <div id="statistik-kelompok-pilihan-ujian-filter">
+      <!-- filter: kelompok pilihan atau kelompok ujian-->
+    </div>
+    <div id="statistik-kelompok-pilihan-ujian-chart">
+      <svg></svg>
+    </div>
+  </div>
+
+  <!-- STATISTIK PTN DENGAN NILAI RATAAN DITERIMA TERTINGGI (Teks Dinamis) -->
+  <div id="statistik-nilai-rataan-diterima-tertinggi">
+    <div id="statistik-nilai-rataan-diterima-tertinggi-title">
+      <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+    </div>
+     <!-- Tab links -->
+    <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
+      <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
+      <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
+        <ol id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
+          <li>Institut Teknologi Bandung</li>
+          <li>Universitas Indonesia</li>
+          <li>Universitas Gajah Mada</li>
+          <li>Institut Teknologi Sepuluh Nopember</li>
+          <li>Universitas Airlangga</li>
+          <li>Universitas Padjadjaran</li>
+          <li>Universitas Diponegoro</li>
+          <li>Institut Pertanian Bogor</li>
+          <li>Universitas Sebelas Maret</li>
+          <li>UPN "Veteran" Yogyakarta</li>
+        </ol>
+      </div>
+      <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
+        <ol id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
+          <li>Universitas Indonesia</li>
+          <li>Universitas Gajah Mada</li>
+          <li>Institut Teknologi Bandung</li>
+          <li>Universitas Padjadjaran</li>
+          <li>Universitas Airlangga</li>
+          <li>Universitas Diponegoro</li>
+          <li>Universitas Brawijaya</li>
+          <li>UPN "Veteran" Yogyakarta</li>
+          <li>Universitas Sebelas Maret</li>
+          <li>Universitas Jenderal Soedirman</li>
+        </ol>
+      </div>
+  </div>
+
+  <!-- Script -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/d3/d3.min.js"></script>
+  <script type="text/javascript" src="js/d3v3.5.17/d3.min.js"></script>
+  <script type="text/javascript" src="js/nv.d3.js"></script>
+  <script type="text/javascript" src="js/side-facts.js"></script>
+</body>
+</html>

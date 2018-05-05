@@ -1,3 +1,12 @@
+Array.prototype.removeIf = function(callback) {
+    var i = this.length;
+    while (i--) {
+        if (callback(this[i], i)) {
+            this.splice(i, 1);
+        }
+    }
+};
+
 var width = window.innerWidth,
     height = window.innerHeight,
     populationDomain;
@@ -45,6 +54,7 @@ d3.queue()
   .await(ready);
 var sbmptnData;
 var kodeProdi;
+
 function KodeProdi(kodeProdiResult){
   this.dataByKodePTN = [];
   kodeProdiResult.forEach(function(d) {
@@ -60,6 +70,9 @@ function KodeProdi(kodeProdiResult){
       name: "Nama Prodi"
     })
   }, this.dataByKodePTN);
+  this.dataByKodePTN.removeIf(function(d) {
+    return d == null;
+  })
   this.dataByKodeProdi = [];
   kodeProdiResult.forEach(function(d) {
     this[d["Kode Prodi"]] = {
@@ -83,6 +96,9 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
   var populationData = {};
   console.log("ASDASD")
   sbmptnData = sbmptnDataResult;
+  sbmptnData.removeIf(function(d) {
+    return kodeProdi.dataByKodeProdi[d.Prodi] == null;
+  })
   var maxPop = 0;
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
@@ -133,6 +149,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
 
   initSly();
   registerSemuaUnivButton();
+  registerSearchBar();
 }
 
 d3.select(window).on("resize", resize);
@@ -190,22 +207,8 @@ function initSly() {
   slyelement.obj = new Sly($(slyelement.el), slyelement.options);
   
   slyelement.obj.init();
-  console.log(kodeProdi.dataByKodePTN)
-  kodeProdi.dataByKodePTN.forEach(function(d, i) {
-    var el = $('<li>').append(
-      $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
-        $('<img>').attr("src","img/logo-univ/itb.png")
-      ),
-      $('<p>', {class: 'content has-text-centered', html: d.name})
-    )
-    el.on('click', function(e) {
-      el.addClass('active')
-      selectUniv('active', slyelement.obj.getIndex(el))
-    })
-    slyelement.obj.add(el);
-  })
-  slyelement.obj.on('active', selectUniv);
   
+  filterSly("")
 }
 
 function selectUniv(eventName, itemIndex) {
@@ -288,4 +291,42 @@ function registerSemuaUnivButton() {
     svg.select(".legendQuant")
     .call(d3legend);
   })
+}
+
+function registerSearchBar() {
+  $("#searchUniv").on('input', function(e) {
+    filterSly($("#searchUniv").val());
+  });
+}
+
+var onSearch = false;
+
+function filterSly(searchString) {
+  if (!onSearch) {
+    onSearch = true;
+    slyelement.obj.remove('<li>')
+    $("#searchUniv").parent().addClass('is-loading')
+    fuzzySearch(searchString)
+  }
+}
+
+function fuzzySearch(searchString) {
+  console.log("SEARCH")
+  kodeProdi.dataByKodePTN.forEach(function(d) {
+    var el = $('<li>').append(
+      $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
+        $('<img>').attr("src","img/logo-univ/itb.png")
+      ),
+      $('<p>', {class: 'content has-text-centered', html: d.name})
+    )
+    el.on('click', function(e) {
+      el.addClass('active')
+      selectUniv('active', slyelement.obj.getIndex(el))
+    })
+    slyelement.obj.add(el);
+  })
+  slyelement.obj.on('active', selectUniv);
+  // slyelement.obj.reload()
+  $("#searchUniv").parent().removeClass('is-loading')
+  onSearch = false;
 }

@@ -25,7 +25,7 @@ body {
 }
 
 .scrollbar {
-  height: 5px;
+  height: 10px;
 }
 
 .scrollbar .handle {
@@ -35,8 +35,12 @@ body {
   background: #888;
 }
 
+.is-vertical-center {
+  margin: 10px 20px 10px 50px;
+}
+
 .active {
-	background: #aabbcc;
+	background: hsl(0, 0%, 96%);
 }
 
 /************************************************************************/

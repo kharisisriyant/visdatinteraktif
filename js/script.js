@@ -2,8 +2,8 @@ var width = window.innerWidth,
     height = window.innerHeight,
     populationDomain;
 
-var colorRange = ["#1a9850", "#66bd63", "#a6d96a", "#d9ef8b", "#ffffbf", "#fee08b", "#fdae61", "#f46d43", "#d73027"];
-var populationDomain = [0, 100000, 200000, 300000, 500000, 750000, 1000000, 1500000, 2500000, 5000000];  
+var colorRange = ['#e0f3db','#a8ddb5','#43a2ca'];
+var populationDomain = [0, 1500, 3000];  
 
 d3.selection.prototype.moveToFront = function() {
   return this.each(function(){
@@ -19,8 +19,12 @@ var svg = d3.select("#idnMap").insert("svg", "p")
             .attr("height", height * 0.5)
             .attr("class", "map");
 var g = svg.append("g");
+var d3legend;
+var legend = svg.append("g")
+  .attr("class", "legendQuant")
+  .attr("transform", "translate(20,"+(height / 4 + 50)+")");
 // Color
-var populationColor = d3.scaleThreshold()
+var populationColorScale = d3.scaleQuantile()
                         .domain(populationDomain)
                         .range(colorRange);
 
@@ -56,7 +60,7 @@ function KodeProdi(kodeProdiResult){
       name: "Nama Prodi"
     })
   }, this.dataByKodePTN);
-  this.dataByKodeProdi = {};
+  this.dataByKodeProdi = [];
   kodeProdiResult.forEach(function(d) {
     this[d["Kode Prodi"]] = {
       univ: {
@@ -79,12 +83,16 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
   var populationData = {};
   console.log("ASDASD")
   sbmptnData = sbmptnDataResult;
+  var maxPop = 0;
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
       populationData[d.Provinsi] = 0
     }
     populationData[d.Provinsi] += parseInt(d.Jumlah);
+    maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
   });
+  populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
+  createLegend();
 
   // Draw the map
   g.selectAll("path")
@@ -100,7 +108,10 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
     .delay(function(d, i) { return Math.random() * 250  +100; })
     .ease(d3.easePolyInOut, 4)
     .attr("fill", function(d) {
-      return populationColor(Math.random() * 5000000);
+      if (populationData[d.properties.province] == null) {
+        populationData[d.properties.province] = 0;
+      }
+      return populationColorScale(populationData[d.properties.province]);
     })
     .attr("transform", "translate(-100,0)scale(1.2)")
     .attr("stroke-width", "0.2")
@@ -117,10 +128,11 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult) {
   g.selectAll("path")
     .append("title")
     .text(function(d) {
-      return d.properties.NAME_1 + " : " + populationData[d.properties.NAME_1];
+      return d.properties.province + " : " + populationData[d.properties.province];
     });
 
   initSly();
+  registerSemuaUnivButton();
 }
 
 d3.select(window).on("resize", resize);
@@ -135,14 +147,22 @@ function resize() {
   d3.select("svg")
     .attr("width", width)
     .attr("height", height * 0.5);
+  legend.attr("transform", "translate(20,"+(height / 4 + 50)+")");
 
   d3.selectAll("path")
     .attr("d", path);
   slyelement.obj.reload();
 }
 
-function processKodeProdi(kodeProdiResult) {
+function createLegend() {
+   //Append a defs (for definition) element to your SVG
   
+d3legend = d3.legendColor()
+  .labelFormat(d3.format(".0f"))
+  .scale(populationColorScale);
+
+svg.select(".legendQuant")
+  .call(d3legend);
 }
 
 var slyelement = {
@@ -150,17 +170,17 @@ var slyelement = {
   el: '.frame',
   options: {
     horizontal: 1,
-    itemNav: 'basic',
+    itemNav: 'centered',
     smart: 1,
-    activateMiddle: 1,
     activateOn: 'click',
     mouseDragging: 1,
     touchDragging: 1,
     releaseSwing: 1,
-    startAt: 0,
+    // startAt: 0,
     scrollBy: 1,
     speed: 300,
     elasticBounds: 1,
+    dragHandle:    true,
     easing: 'swing', // easeInOutElastic, easeOutBounce
     scrollBar: $('.scrollbar')
   }
@@ -171,8 +191,101 @@ function initSly() {
   
   slyelement.obj.init();
   console.log(kodeProdi.dataByKodePTN)
-  kodeProdi.dataByKodePTN.forEach(function(d) {
-    slyelement.obj.add('<li><p class="content has-text-centered">' + d.name + '</p></li>');
+  kodeProdi.dataByKodePTN.forEach(function(d, i) {
+    var el = $('<li>').append(
+      $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
+        $('<img>').attr("src","img/logo-univ/itb.png")
+      ),
+      $('<p>', {class: 'content has-text-centered', html: d.name})
+    )
+    el.on('click', function(e) {
+      el.addClass('active')
+      selectUniv('active', slyelement.obj.getIndex(el))
+    })
+    slyelement.obj.add(el);
   })
+  slyelement.obj.on('active', selectUniv);
   
+}
+
+function selectUniv(eventName, itemIndex) {
+    $('#allUniv').addClass('is-outlined')
+    console.log($(slyelement.obj.items[itemIndex].el).find("p").text());
+    var selectedUniv = $(slyelement.obj.items[itemIndex].el).find("p").text();
+
+    var populationData = {};
+    var maxPop = 0;
+    sbmptnData.forEach(function(d) { 
+      if (populationData[d.Provinsi] == null) {
+        populationData[d.Provinsi] = 0
+      }
+      if (kodeProdi.dataByKodeProdi[d.Prodi] == null) {
+        // console.log(d.Prodi);
+        return;
+      }
+      if (kodeProdi.dataByKodeProdi[d.Prodi].univ.name != selectedUniv) {
+        return;
+      }
+      populationData[d.Provinsi] += parseInt(d.Jumlah);
+      maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
+    });
+    console.log(maxPop)
+    populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
+
+
+    g.selectAll("path")
+    // .data(topojson.feature(idnSpatialData, idnSpatialData.objects.IDN).features)
+    // .enter()
+      .transition().duration(500)
+      .ease(d3.easePolyInOut, 4)
+      .attr("fill", function(d) {
+        if (populationData[d.properties.province] == null) {
+          populationData[d.properties.province] = 0;
+        }
+        return populationColorScale(populationData[d.properties.province]);
+      });
+    svg.select(".legendQuant")
+    .call(d3legend);
+}
+
+function registerSemuaUnivButton() {
+  $('#allUniv').on('click', function(e) {
+    $('#allUniv').removeClass('is-outlined')
+    console.log($(slyelement.el).find('.active'))
+    console.log(slyelement.obj.rel.activeItem)
+    $(slyelement.el).find('.active').removeClass('active')
+    slyelement.obj.reload()
+    // slyelement.obj = slyelement.obj.destroy().init()
+
+    var populationData = {};
+    var maxPop = 0;
+    sbmptnData.forEach(function(d) { 
+      if (populationData[d.Provinsi] == null) {
+        populationData[d.Provinsi] = 0
+      }
+      if (kodeProdi.dataByKodeProdi[d.Prodi] == null) {
+        // console.log(d.Prodi);
+        return;
+      }
+      populationData[d.Provinsi] += parseInt(d.Jumlah);
+      maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
+    });
+    console.log(maxPop)
+    populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
+
+
+    g.selectAll("path")
+    // .data(topojson.feature(idnSpatialData, idnSpatialData.objects.IDN).features)
+    // .enter()
+      .transition().duration(500)
+      .ease(d3.easePolyInOut, 4)
+      .attr("fill", function(d) {
+        if (populationData[d.properties.province] == null) {
+          populationData[d.properties.province] = 0;
+        }
+        return populationColorScale(populationData[d.properties.province]);
+      });
+    svg.select(".legendQuant")
+    .call(d3legend);
+  })
 }

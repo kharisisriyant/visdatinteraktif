@@ -57,6 +57,7 @@ d3.queue()
   .await(ready);
 var sbmptnData;
 var kodeProdi;
+var peminatProdi;
 var logoURL = {};
 
 function KodeProdi(kodeProdiResult) {
@@ -104,7 +105,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   logoURLResult.forEach(function(d) {
     logoURL[d.NamaUniv] = d.ImgURL;
   })
-
+  peminatProdi = kodeProdiResult;
   kodeProdi = new KodeProdi(kodeProdiResult);
 
   // Population data

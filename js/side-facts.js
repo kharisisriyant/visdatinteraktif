@@ -11,6 +11,7 @@ $(document).ready(function() {
 /*                                          FOR top-prodi                                       */
 /************************************************************************************************/
 var updateTopProdiChart = function(amount, select, base, ptn){
+  console.log(peminatProdi);
   var data;
   var chart;
   nv.addGraph(function() {

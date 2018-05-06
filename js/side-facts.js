@@ -60,7 +60,6 @@ var updateTopProdiChart = function(data){
         .y(function(d) { return d.value })
         .margin({top: 30, right: 20, bottom: 50, left: 175})
         .showValues(true)           //Show bar value next to each bar.
-        .tooltips(true)             //Show tooltips on hover.
         .barColor(function (d, i) {
               var colors = d3v3.scale.category20().range().slice(3);
               return colors[i % colors.length-1];
@@ -69,7 +68,7 @@ var updateTopProdiChart = function(data){
         .stacked(true)
         .showLegend(false)
     ;        //Allow user to switch between "Grouped" and "Stacked" mode.
-
+    chart.tooltip.enabled();
     chart.yAxis
         .tickFormat(d3v3.format('d'));
 

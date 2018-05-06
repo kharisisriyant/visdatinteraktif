@@ -282,3 +282,7 @@ div#top-prodi-chart{
 .tabs{
   overflow: hidden;
 }
+
+#top-prodi-chart-svg .nvd3 .nv-axis.nv-x text{
+  font-size: 10px;
+}

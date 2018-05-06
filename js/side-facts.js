@@ -61,7 +61,7 @@ var updateTopProdiChart = function(data){
 
   var modified_height;
   if(data_size > 5){
-    modified_height = 90 * data_size + 5;
+    modified_height = 50 * data_size + 5;
   }
   else{
     modified_height = 250;
@@ -110,6 +110,7 @@ var updateTopProdiChart = function(data){
               return colors[i % colors.length-1];
           })
         .height(modified_height)
+        .width(340)
         .showControls(false)
         .stacked(true)
         .showLegend(false)

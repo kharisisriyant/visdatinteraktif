@@ -164,7 +164,6 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
         return;
       }
       lazyload.update();
-      console.log("ANIMATION END")
     })
 
   g.selectAll("path")
@@ -271,7 +270,9 @@ function initSly() {
   
   slyelement.obj.init();
   
-  lazyload = new LazyLoad();
+  lazyload = new LazyLoad({
+    elements_selector: ".lazyload"
+  });
   slyelement.obj.on('moveEnd', function() {
     lazyload.update()
   })
@@ -367,7 +368,7 @@ function fuzzySearch(searchString) {
     }
     var el = $('<li>').append(
       $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
-        $('<img>').attr("style","width: auto; height: 100%; display: block; margin: 0 auto;").attr("data-src","img/logo-univ/" + logoURL[d.name])
+        $('<img>', {class: 'lazyload', style: "width: auto; height: 100%; display: block; margin: 0 auto;", "data-src": "img/logo-univ/" + logoURL[d.name]})
       ),
       $('<p>', {class: 'content has-text-centered is-size-6', html: d.name})
     )

@@ -70,12 +70,12 @@
                         <div class="prodi is-size-4"></div>
                         <div id="picto-content">
                             <div id="expected">
-                                <label>Diterima</label>
+                                <label class="label is-size-5">Diterima</label>
                                 <div id="expected-content">
                                 </div>
                             </div>
                             <div id="unexpected">
-                                <label>&nbsp;&nbsp;Mendaftar</label>
+                                <label class="label is-size-5">&nbsp;&nbsp;Mendaftar</label>
                                 <div id="unexpected-content">
                                 </div>
                             </div>
@@ -128,67 +128,67 @@
                             <div id="top-prodi-chart">
                             <svg height="250"></svg>
                         </div>
-                        <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
-                            <div id="statistik-kelompok-pilihan-ujian-title">
-                                <h2>Statistik Pengelompokan Pendaftar</h2>
-                            </div>
-                            <div id="statistik-kelompok-pilihan-ujian-filter">
-                                Tampilkan chart berdasarkan kelompok:
-                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
-                                    <option value="1">Pilihan</option>
-                                    <option value="2">Ujian</option>
-                                </select>
-                            </div>
-                            <div id="statistik-kelompok-pilihan-ujian-chart">
-                            <svg style="height:300px;"></svg>
-                        </div>
                     </div>
-                    <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
-                        <div id="statistik-nilai-rataan-diterima-tertinggi-title">
-                            <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+                    <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
+                        <div id="statistik-kelompok-pilihan-ujian-title">
+                            <h2>Statistik Pengelompokan Pendaftar</h2>
                         </div>
-                        <!-- Tab links -->
-                        <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
-                            <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
-                            <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+                        <div id="statistik-kelompok-pilihan-ujian-filter">
+                            Tampilkan chart berdasarkan kelompok:
+                            <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
+                                <option value="1">Pilihan</option>
+                                <option value="2">Ujian</option>
+                            </select>
                         </div>
-                        <!-- Tab content -->
-                        <div style="height:400px;">
-                            <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
-                                <div class="is-one-fifth">
-                                </div>
-                                <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
-                                    <li>Institut Teknologi Bandung</li>
-                                    <li>Universitas Indonesia</li>
-                                    <li>Universitas Gajah Mada</li>
-                                    <li>Institut Teknologi Sepuluh Nopember</li>
-                                    <li>Universitas Airlangga</li>
-                                    <li>Universitas Padjadjaran</li>
-                                    <li>Universitas Diponegoro</li>
-                                    <li>Institut Pertanian Bogor</li>
-                                    <li>Universitas Sebelas Maret</li>
-                                    <li>UPN "Veteran" Yogyakarta</li>
-                                </ol>
-                                <div class="is-one-fifth">
-                                </div>
+                        <div id="statistik-kelompok-pilihan-ujian-chart">
+                        <svg style="height:300px;"></svg>
+                    </div>
+                </div>
+                <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
+                    <div id="statistik-nilai-rataan-diterima-tertinggi-title">
+                        <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+                    </div>
+                    <!-- Tab links -->
+                    <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
+                        <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
+                        <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+                    </div>
+                    <!-- Tab content -->
+                    <div style="height:400px;">
+                        <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
+                            <div class="is-one-fifth">
                             </div>
-                            <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
-                                <div class="is-one-fifth">
-                                </div>
-                                <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
-                                    <li>Universitas Indonesia</li>
-                                    <li>Universitas Gajah Mada</li>
-                                    <li>Institut Teknologi Bandung</li>
-                                    <li>Universitas Padjadjaran</li>
-                                    <li>Universitas Airlangga</li>
-                                    <li>Universitas Diponegoro</li>
-                                    <li>Universitas Brawijaya</li>
-                                    <li>UPN "Veteran" Yogyakarta</li>
-                                    <li>Universitas Sebelas Maret</li>
-                                    <li>Universitas Jenderal Soedirman</li>
-                                </ol>
-                                <div class="is-one-fifth">
-                                </div>
+                            <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
+                                <li>Institut Teknologi Bandung</li>
+                                <li>Universitas Indonesia</li>
+                                <li>Universitas Gajah Mada</li>
+                                <li>Institut Teknologi Sepuluh Nopember</li>
+                                <li>Universitas Airlangga</li>
+                                <li>Universitas Padjadjaran</li>
+                                <li>Universitas Diponegoro</li>
+                                <li>Institut Pertanian Bogor</li>
+                                <li>Universitas Sebelas Maret</li>
+                                <li>UPN "Veteran" Yogyakarta</li>
+                            </ol>
+                            <div class="is-one-fifth">
+                            </div>
+                        </div>
+                        <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
+                            <div class="is-one-fifth">
+                            </div>
+                            <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
+                                <li>Universitas Indonesia</li>
+                                <li>Universitas Gajah Mada</li>
+                                <li>Institut Teknologi Bandung</li>
+                                <li>Universitas Padjadjaran</li>
+                                <li>Universitas Airlangga</li>
+                                <li>Universitas Diponegoro</li>
+                                <li>Universitas Brawijaya</li>
+                                <li>UPN "Veteran" Yogyakarta</li>
+                                <li>Universitas Sebelas Maret</li>
+                                <li>Universitas Jenderal Soedirman</li>
+                            </ol>
+                            <div class="is-one-fifth">
                             </div>
                         </div>
                     </div>
@@ -196,29 +196,30 @@
             </div>
         </div>
     </div>
-    <div id="templates" style="display: none;">
-        <div class="picto" style="display: none;">
-            <img src="img/clip.png" height="100%">
-        </div>
+</div>
+<div id="templates" style="display: none;">
+    <div class="picto" style="display: none;">
+        <img src="img/clip.png" height="100%"">
     </div>
-    <!-- D3.js Source -->
-    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-    <script src="https://d3js.org/topojson.v3.min.js"></script>
-    <script
-    src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.7.1/lazyload.min.js"></script>
-    <!-- Script -->
-    <script type="text/javascript" src="js/picto.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
-    <script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
-    <script type="text/javascript" src="js/nv.d3.js"></script>
-    <script type="text/javascript" src="js/side-facts.js"></script>
+</div>
+<!-- D3.js Source -->
+<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+<script src="https://d3js.org/topojson.v3.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-1.12.4.min.js"
+integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.7.1/lazyload.min.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/picto.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
+<script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<script type="text/javascript" src="js/side-facts.js"></script>
 </body>
 </html>

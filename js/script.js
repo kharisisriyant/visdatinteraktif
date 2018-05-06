@@ -117,15 +117,25 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
     return kodeProdi.dataByKodeProdi[d.Prodi] == null;
   })
   var maxPop = 0;
+  var totalTerima = 0;
+  var totalPeminat = 0;
+  var prodiSet = [];
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
       populationData[d.Provinsi] = 0
     }
     populationData[d.Provinsi] += parseInt(d.Jumlah);
+    totalTerima += parseInt(d.Jumlah);
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
+    if (prodiSet[d.Prodi] == null && kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat != null) {
+      prodiSet[d.Prodi] = true;
+      totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+    }
   });
   populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
   createLegend();
+
+  var animationCounter = 0;
 
   // Draw the map
   g.selectAll("path")
@@ -148,6 +158,14 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
     })
     .attr("transform", "translate(-100,0)scale(1.2)")
     .attr("stroke-width", "0.2")
+    .on('end', function() {
+      animationCounter++;
+      if (animationCounter != 34) {
+        return;
+      }
+      lazyload.update();
+      console.log("ANIMATION END")
+    })
 
   g.selectAll("path")
     .on('mouseover', function(d, i) {
@@ -171,6 +189,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   registerStatistikFilter();
 
   reloadStatistikProdi();
+  drawPictos("Semua Universitas", "Semua Prodi", totalTerima, totalPeminat);
 }
 
 d3.select(window).on("resize", resize);
@@ -190,6 +209,7 @@ function resize() {
   d3.selectAll("path")
     .attr("d", path);
   slyelement.obj.reload();
+  lazyload.update();
 }
 
 function createLegend() {
@@ -240,6 +260,7 @@ function initSly() {
 function selectUniv(eventName, itemIndex) {
   $('#allUniv').addClass('is-outlined')
   var selectedUniv = $(slyelement.obj.items[itemIndex].el).find("p").text();
+  $('#statsUniv').text(selectedUniv)
   var kodeUniv;
   kodeProdi.dataByKodePTN.forEach(function(d, kode) {
     if (d.name == selectedUniv) {
@@ -260,6 +281,7 @@ function selectUniv(eventName, itemIndex) {
 function registerSemuaUnivButton() {
   $('#allUniv').on('click', function(e) {
     $('#allUniv').removeClass('is-outlined')
+    $('#statsUniv').text("Semua Universitas")
     $(slyelement.el).find('.active').removeClass('active')
     slyelement.obj.reload()
 
@@ -280,7 +302,10 @@ function registerSearchBar() {
       window.clearTimeout(searchTimeoutHandle);
     }
     onSearch = true;
-    searchTimeoutHandle = window.setTimeout(filterSly, 500, $("#searchUniv").val());
+    searchTimeoutHandle = window.setTimeout(function(searchString) {
+      filterSly(searchString)
+      lazyload.update()
+    }, 500, $("#searchUniv").val());
   });
 }
 
@@ -291,7 +316,6 @@ function filterSly(searchString) {
     slyelement.obj.remove(0);
   }
   fuzzySearch(searchString)
-  lazyload.update()
 }
 
 function fuzzySearch(searchString) {

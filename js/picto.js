@@ -52,7 +52,7 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   var numParticipated = 1;
   
   var numPerPicto = acceptedNum;
-  console.log("acceptedNum, registeredNum: " + acceptedNum + ", " + registeredNum);
+  // console.log("acceptedNum, registeredNum: " + acceptedNum + ", " + registeredNum);
   var numPictoOver = Math.round(registeredNum / acceptedNum);
 
   $univ.innerHTML = univName;
@@ -75,7 +75,7 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   displayPictogram(numPictoOver);
 
   var penjelasan = "<b>" + acceptedNum + "</b> <span>dari <b>" + registeredNum + "</b><br>lolos";
-  console.log(penjelasan);
+  // console.log(penjelasan);
   $successRate.innerHTML = penjelasan;
   
   // $('#numRepr').html(' = ' + numPerPicto + ' participants');
@@ -83,7 +83,7 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   // $exp.attr("title", acceptedNum + " orang diterima");
   // $unexp.attr("title", registeredNum + " orang mendaftar");
   var rate =  "" + (acceptedNum/registeredNum);
-  console.log(rate);
+  // console.log(rate);
 }
 
 function degToRad (deg) {

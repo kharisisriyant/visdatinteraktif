@@ -312,11 +312,14 @@ function fuzzySearch(searchString) {
     }
     var el = $('<li>').append(
       $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
-        $('<img>').attr("style","width: auto; height: 100%;").attr("src","img/logo-univ/" + logoURL[d.name])
+        $('<img>').attr("style","width: auto; height: 100%; display: block; margin: 0 auto;").attr("src","img/logo-univ/" + logoURL[d.name])
       ),
       $('<p>', {class: 'content has-text-centered', html: d.name})
     )
     el.on('click', function(e) {
+      if (el.hasClass('active') || slyelement.obj.rel.activeItem == null) {
+        return;
+      }
       el.addClass('active')
       selectUniv('active', slyelement.obj.getIndex(el))
     })
@@ -378,13 +381,14 @@ function recolorMapWithCondition(condition) {
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
     totalTerima += parseInt(d.Jumlah);
     if (prodiSet[d.Prodi] == null) {
-        totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
-        prodiSet[d.Prodi] = true;
+      console.log(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+      totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+      prodiSet[d.Prodi] = true;
     }
   });
   populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
   drawPictos(currentUniv, currentProdi, totalTerima, totalPeminat);
-
+  reloadStatistikProdi();
   g.selectAll("path")
     .transition().duration(500)
     .ease(d3.easePolyInOut, 4)
@@ -403,4 +407,118 @@ function recolorMapWithCondition(condition) {
       return d.properties.province + " : " + populationData[d.properties.province];
     });
 
+}
+
+function buildStatistikProdiData(num, fromTop, sbmptnDataCondition, univName) {
+  var prodiSet = [];
+  var prodiData = [];
+  sbmptnData.forEach(function(d, i) {
+    if (kodeProdi.dataByKodeProdi[d.Prodi] == null) {
+      return;
+    }
+    if (univName != "Semua Universitas" && univName != kodeProdi.dataByKodeProdi[d.Prodi].univ.name) {
+      return;
+    }
+    var repeatedProdi = true;
+    if (prodiSet[d.Prodi] == null) {
+      prodiSet[d.Prodi] = true;
+      repeatedProdi = false
+    }
+    if (prodiData[d.Prodi] == null) {
+      prodiData[d.Prodi] = 0
+    }
+    prodiData[d.Prodi] = sbmptnDataCondition(i, repeatedProdi, prodiData[d.Prodi])
+  })
+  var sortedProdiArray = [];
+  var isRatio = false;
+  prodiData.forEach(function(val, key) {
+    if (val.ratio != null) {
+      isRatio = true;
+      sortedProdiArray.push({val: (val.lolos/val.peminat), key: key})
+      return;
+    }
+    sortedProdiArray.push({val: val, key: key})
+  })
+  var sortFunction;
+  if (fromTop) {
+    sortFunction = function(a, b) {
+      return b.val - a.val;
+    }
+    if (isRatio) {
+      sortFunction = function(a, b) {
+        return a.val - b.val;
+      } 
+    }
+  } else {
+    sortFunction = function(a, b) {
+      return a.val - b.val;
+    }
+    if (isRatio) {
+      sortFunction = function(a, b) {
+        return b.val - a.val;
+      } 
+    }
+  }
+  sortedProdiArray.sort(sortFunction);
+  resultData = [{"key": "", "values": []}]
+  num = num < sortedProdiArray.length ? num : sortedProdiArray.length;
+  for (var i = 0; i < num; i++) {
+    var sortedKey = sortedProdiArray[i].key
+    console.log(sortedProdiArray[i])
+    if (univName == "Semua Universitas") {
+      resultData[0].values.push({label: kodeProdi.dataByKodeProdi[sortedKey].name + " (" + kodeProdi.dataByKodeProdi[sortedKey].univ.name + ")", value: sortedProdiArray[i].val})
+    } else {
+      resultData[0].values.push({label: kodeProdi.dataByKodeProdi[sortedKey].name, value: sortedProdiArray[i].val})
+    }
+  }
+  return resultData;
+}
+
+function reloadStatistikProdi() {
+  var num = $('#top-prodi-amount').val();
+  var fromTop = $('#top-prodi-select').val() == 1;
+  var base = $('#top-prodi-base').val();
+  var sbmptnDataCondition;
+  var isCancel;
+  switch(base) {
+    case "1":
+        sbmptnDataCondition = function (i, repeatedProdi, prevData) {
+          return prevData + parseInt(sbmptnData[i].Jumlah);
+        }
+        break;
+    case "2":
+        sbmptnDataCondition = function (i, repeatedProdi, prevData) {
+          if (repeatedProdi) {
+            return prevData;
+          }
+          return parseInt(kodeProdi.dataByKodeProdi[sbmptnData[i].Prodi].jumlahPeminat);
+        }
+        break;
+    case "3":
+        sbmptnDataCondition = function (i, repeatedProdi, prevData) {
+          if (repeatedProdi) {
+            prevData.lolos += parseInt(sbmptnData[i].Jumlah);
+            return prevData;
+          }
+          return {
+            peminat: parseInt(kodeProdi.dataByKodeProdi[sbmptnData[i].Prodi].jumlahPeminat), 
+            lolos: parseInt(sbmptnData[i].Jumlah),
+            ratio: true
+          }
+        }
+        break;
+    default:
+      isCancel = true;
+      console.log("error: no base condition found");
+  }
+  var activeItemIndex = slyelement.obj.rel.activeItem;
+  var selectedUniv = $(slyelement.obj.items[activeItemIndex].el).find("p").text();
+  if (!$('#allUniv').hasClass('is-outlined')) {
+    selectedUniv = "Semua Universitas"
+  }
+  if (isCancel) {
+    return;
+  }
+  var inputData = buildStatistikProdiData(num, fromTop, sbmptnDataCondition, selectedUniv);
+  updateTopProdiChart(inputData)
 }

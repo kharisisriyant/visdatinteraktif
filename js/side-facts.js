@@ -48,6 +48,30 @@ $('#top-prodi-ptn').on('change', function() {
   updateTopProdiChart(data2);
 })
 
+function wrapLabelText() {
+  d3.selectAll(".nv-x.nv-axis .tick text").each(function(i, e) {
+    var text = d3.select(this),
+      words = text.text().split(/\s+/).reverse(),
+      word, line = [], lineNumber = 0,
+      lineHeight = 1.1, // ems
+      y = text.attr("y") - 10,
+      dy = parseFloat(text.attr("dy")),
+      tspan = text.text(null).append("tspan").attr("x", -10).attr("y", y).attr("dy", dy + "em");
+
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      // TDOD : Make 80 a dynamic value based on the bar width/height
+      if (tspan.node().getComputedTextLength() > 150) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan").attr("x", -10).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+      }
+    }
+  });
+}
+
 /************************************************************************************************/
 /*                                          FOR top-prodi                                       */
 /************************************************************************************************/
@@ -58,7 +82,7 @@ var updateTopProdiChart = function(data){
     chart = nv.models.multiBarHorizontalChart()
         .x(function(d) { return d.label })
         .y(function(d) { return d.value })
-        .margin({top: 30, right: 20, bottom: 50, left: 175})
+        .margin({top: 30, right: 20, bottom: 50, left: 150})
         .showValues(true)           //Show bar value next to each bar.
         .barColor(function (d, i) {
               var colors = d3v3.scale.category20().range().slice(3);
@@ -76,8 +100,12 @@ var updateTopProdiChart = function(data){
         .datum(data)
         .call(chart);
 
-    nv.utils.windowResize(chart.update);
+    nv.utils.windowResize(function() {
+      chart.update();
+      wrapLabelText();
+    });
 
+    wrapLabelText();
     return chart;
   });
 }

@@ -60,8 +60,7 @@
                             <div class="scrollbar">
                                 <div class="handle"></div>
                             </div>
-                        </div>
-                        
+                        </div>                        
                     </div>
                 </div>
                 <div class="tile is-parent is-4 is-vertical">
@@ -123,10 +122,10 @@
                                         <span id="statsUniv" class="is-size-6 is-italic">Semua Universitas</span>
                                     </p>
                                 </span>
-                                
                             </div>
                             <div id="top-prodi-chart">
-                            <svg height="250"></svg>
+                                <svg height="250"></svg>
+                            </div>
                         </div>
                         <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
                             <div id="statistik-kelompok-pilihan-ujian-title">
@@ -140,54 +139,55 @@
                                 </select>
                             </div>
                             <div id="statistik-kelompok-pilihan-ujian-chart">
-                            <svg style="height:300px;"></svg>
-                        </div>
-                    </div>
-                    <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
-                        <div id="statistik-nilai-rataan-diterima-tertinggi-title">
-                            <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
-                        </div>
-                        <!-- Tab links -->
-                        <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
-                            <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
-                            <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
-                        </div>
-                        <!-- Tab content -->
-                        <div style="height:400px;">
-                            <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
-                                <div class="is-one-fifth">
-                                </div>
-                                <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
-                                    <li>Institut Teknologi Bandung</li>
-                                    <li>Universitas Indonesia</li>
-                                    <li>Universitas Gajah Mada</li>
-                                    <li>Institut Teknologi Sepuluh Nopember</li>
-                                    <li>Universitas Airlangga</li>
-                                    <li>Universitas Padjadjaran</li>
-                                    <li>Universitas Diponegoro</li>
-                                    <li>Institut Pertanian Bogor</li>
-                                    <li>Universitas Sebelas Maret</li>
-                                    <li>UPN "Veteran" Yogyakarta</li>
-                                </ol>
-                                <div class="is-one-fifth">
-                                </div>
+                                <svg style="height:300px;"></svg>
                             </div>
-                            <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
-                                <div class="is-one-fifth">
+                        </div>
+                        <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
+                            <div id="statistik-nilai-rataan-diterima-tertinggi-title">
+                                <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+                            </div>
+                            <!-- Tab links -->
+                            <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
+                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
+                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+                            </div>
+                            <!-- Tab content -->
+                            <div style="height:400px;">
+                                <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
+                                    <div class="is-one-fifth">
+                                    </div>
+                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
+                                        <li>Institut Teknologi Bandung</li>
+                                        <li>Universitas Indonesia</li>
+                                        <li>Universitas Gajah Mada</li>
+                                        <li>Institut Teknologi Sepuluh Nopember</li>
+                                        <li>Universitas Airlangga</li>
+                                        <li>Universitas Padjadjaran</li>
+                                        <li>Universitas Diponegoro</li>
+                                        <li>Institut Pertanian Bogor</li>
+                                        <li>Universitas Sebelas Maret</li>
+                                        <li>UPN "Veteran" Yogyakarta</li>
+                                    </ol>
+                                    <div class="is-one-fifth">
+                                    </div>
                                 </div>
-                                <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
-                                    <li>Universitas Indonesia</li>
-                                    <li>Universitas Gajah Mada</li>
-                                    <li>Institut Teknologi Bandung</li>
-                                    <li>Universitas Padjadjaran</li>
-                                    <li>Universitas Airlangga</li>
-                                    <li>Universitas Diponegoro</li>
-                                    <li>Universitas Brawijaya</li>
-                                    <li>UPN "Veteran" Yogyakarta</li>
-                                    <li>Universitas Sebelas Maret</li>
-                                    <li>Universitas Jenderal Soedirman</li>
-                                </ol>
-                                <div class="is-one-fifth">
+                                <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
+                                    <div class="is-one-fifth">
+                                    </div>
+                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
+                                        <li>Universitas Indonesia</li>
+                                        <li>Universitas Gajah Mada</li>
+                                        <li>Institut Teknologi Bandung</li>
+                                        <li>Universitas Padjadjaran</li>
+                                        <li>Universitas Airlangga</li>
+                                        <li>Universitas Diponegoro</li>
+                                        <li>Universitas Brawijaya</li>
+                                        <li>UPN "Veteran" Yogyakarta</li>
+                                        <li>Universitas Sebelas Maret</li>
+                                        <li>Universitas Jenderal Soedirman</li>
+                                    </ol>
+                                    <div class="is-one-fifth">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -195,12 +195,11 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="templates" style="display: none;">
-        <div class="picto" style="display: none;">
-            <img src="img/clip.png" height="100%">
+        <div id="templates" style="display: none;">
+            <div class="picto" style="display: none;">
+                <img src="img/clip.png" height="100%">
+            </div>
         </div>
-    </div>
     <!-- D3.js Source -->
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>

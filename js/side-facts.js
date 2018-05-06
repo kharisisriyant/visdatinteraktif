@@ -70,13 +70,13 @@ var updateTopProdiChart = function(data){
   $("#top-prodi-chart-svg").css("height", modified_height + "px");
 
   var key;
-  if(data[0].key == "Jumlah Pendaftar"){
+  if(data[0].key == "Jumlah Peserta yang Diterima"){
     key = 1;
   }
   else if(data[0].key == "Jumlah Peminat"){
     key = 2;
   }
-  else if(data[0].key == "Keketatan"){
+  else if(data[0].key == "Persentase Jumlah Peserta yang Diterima / Jumlah Peminat"){
     key = 3;
   }
 
@@ -122,19 +122,16 @@ var updateTopProdiChart = function(data){
     if(key == 1){
       chart.yAxis
         .tickFormat(d3v3.format('d'))
-        .axisLabel("Jumlah Peserta yang Diterima")
       ;
     }
     else if(key == 2){
       chart.yAxis
         .tickFormat(d3v3.format('d'))
-        .axisLabel("Jumlah Peminat")
       ;
     }
-    else{
+    else if(key == 3){
       chart.yAxis
         .tickFormat(d3v3.format('.2f'))
-        .axisLabel("Persentase Keketatan")
       ;
     } 
 

@@ -32,7 +32,7 @@ var g = svg.append("g");
 var d3legend;
 var legend = svg.append("g")
   .attr("class", "legendQuant")
-  .attr("transform", "translate(20,"+(height / 4 + 50)+")");
+  .attr("transform", "translate(20,"+(height / 3 + 50)+")");
 // Color
 var populationColorScale = d3.scaleLinear()
                         .domain(populationDomain)
@@ -42,8 +42,8 @@ var populationColorScale = d3.scaleLinear()
 // Projection and path
 var projection = d3.geoMercator()
                     .center([118.25, -5])
-                    .scale(width * 0.5)
-                    .translate([width / 3 - 20, height / 4]);
+                    .scale(width * 0.6)
+                    .translate([width / 3 - 50, height / 4]);
 
 var path = d3.geoPath().projection(projection);
 
@@ -198,13 +198,13 @@ function resize() {
   width = window.innerWidth;
   height = window.innerHeight;
 
-  projection.scale(width * 0.5)
-            .translate([width / 3, height / 4]);
+  projection.scale(width * 0.6)
+    .translate([width / 3 - 50, height / 4]);
 
   d3.select("svg")
     .attr("width", width)
     .attr("height", height * 0.5);
-  legend.attr("transform", "translate(20,"+(height / 4 + 50)+")");
+  legend.attr("transform", "translate(20,"+(height / 3 + 50)+")");
 
   d3.selectAll("path")
     .attr("d", path);
@@ -214,9 +214,31 @@ function resize() {
 
 function createLegend() {
    //Append a defs (for definition) element to your SVG
-    
+
+  var labelGenerator = function({
+    i,
+    genLength,
+    generatedLabels,
+    labelDelimiter
+  }) {
+    if (i === 0) {
+      return generatedLabels[i]
+    } else if (i === genLength - 1) {
+      return generatedLabels[i]
+    }
+    return ""
+  }
+      
   d3legend = d3.legendColor()
     .labelFormat(d3.format(".0f"))
+    .shape("rect")
+    .shapeHeight(5)
+    .shapeWidth(5)
+    .shapePadding(0)
+    .cells(30)
+    .orient('horizontal')
+    .labels(labelGenerator)
+    // .cellFilter(function(d){ return d.label !== "0" })
     .scale(populationColorScale);
 
   svg.select(".legendQuant")

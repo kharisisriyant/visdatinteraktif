@@ -61,25 +61,26 @@ var updateTopProdiChart = function(data){
 
   var modified_height;
   if(data_size > 5){
-    modified_height = 45 * data_size + 5;
+    modified_height = 50 * data_size + 5;
   }
   else{
     modified_height = 250;
   }
 
+  $("#top-prodi-chart-svg").css("height", modified_height + "px");
+
   var key;
-  if(data[0].key == "Jumlah Pendaftar"){
+  if(data[0].key == "Jumlah Peserta yang Diterima"){
     key = 1;
   }
   else if(data[0].key == "Jumlah Peminat"){
     key = 2;
   }
-  else if(data[0].key == "Keketatan"){
+  else if(data[0].key == "Persentase Jumlah Peserta yang Diterima / Jumlah Peminat"){
     key = 3;
   }
 
   for(i=0; i < data[0].values.length; i++){
-    console.log(data[0].values[i].value);
     if((data[0].values[i].value == Infinity) || (data[0].values[i].value == null)){
 
       if((key == 1) || (key == 2)){
@@ -99,12 +100,7 @@ var updateTopProdiChart = function(data){
               return d.value;
             }
             else{
-              if(d.value == null){
-                return 100;
-              }
-              else{
-                return (d.value * 100);
-              }
+              return (d.value * 100);
             }
           })
         .margin({top: 0, right: 14, bottom: 14, left: 150})
@@ -114,32 +110,28 @@ var updateTopProdiChart = function(data){
               return colors[i % colors.length-1];
           })
         .height(modified_height)
+        .width(340)
         .showControls(false)
         .stacked(true)
         .showLegend(false)
+        .showYAxis(true)
     ;
 
     chart.tooltip.enabled();
     
-    if((key == 1) || (key == 2)){
+    if(key == 1){
       chart.yAxis
         .tickFormat(d3v3.format('d'))
       ;
-      if(key == 1){
-        chart.yAxis
-          .axisLabel("Jumlah Peserta yang Diterima")
-        ;
-      }
-      else{
-        chart.yAxis
-          .axisLabel("Jumlah Peminat")
-        ;
-      }
     }
-    else{
+    else if(key == 2){
+      chart.yAxis
+        .tickFormat(d3v3.format('d'))
+      ;
+    }
+    else if(key == 3){
       chart.yAxis
         .tickFormat(d3v3.format('.2f'))
-        .axisLabel("Persentase Keketatan")
       ;
     } 
 

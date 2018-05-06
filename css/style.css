@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .frame {
@@ -61,6 +62,7 @@ svg.nvd3-svg {
 	cursor: pointer;
 	padding-right: 0.5em;
 	font-size: 2rem;
+	color: #555555;
 }
 
 .borderless-medium {
@@ -75,6 +77,7 @@ svg.nvd3-svg {
 	cursor: pointer;
 	padding-right: 1em;
 	font-size: 1.8rem;
+	color: #555555;
 }
 
 
@@ -90,6 +93,7 @@ svg.nvd3-svg {
 	cursor: pointer;
 	padding-right: 1em;
 	font-size: 1.8em;
+	color: #555555;
 }
 
 .spinner {
@@ -182,21 +186,18 @@ body {
 
 .univ {
   color: #555555;
-  font-family: 'Segoe UI Light';
   margin-bottom: 10px;
 }
 
 .prodi {
   font-size: 16px;
   color: #555555;
-  font-family: 'Segoe UI Light';
   margin-bottom: 20px;
 }
 
 .success-rate {
   font-size: 20px;
   color: #555555;
-  font-family: 'Segoe UI Light';
   text-align: center;
   margin-bottom: 20px;
   display: inline-block;
@@ -208,10 +209,6 @@ body {
   height: 40px;
   display: inline-block;
   margin: 1px;
-}
-
-#picto {
-  float: right;
 }
 
 #expected {
@@ -269,11 +266,19 @@ label {
 	font-size: 12px;
 }
 
-/*#top-prodi-chart{
-  overflow-y: scroll;
-  overflow-x: scroll;
-}*/
+div#top-prodi-chart{
+  height: 280px;
+  overflow-y: auto;
+}
+
+#top-prodi-chart-svg{
+  height: 250px;
+}
 
 .tabs{
   overflow: hidden;
+}
+
+#top-prodi-chart-svg .nvd3 .nv-axis.nv-x text{
+  font-size: 10px;
 }

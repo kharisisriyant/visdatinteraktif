@@ -12,6 +12,12 @@ var width = window.innerWidth,
     height = window.innerHeight,
     populationDomain;
 
+var mapContainerWidth = $('#idnMap').width();
+var mapContainerHeight = mapContainerWidth *0.4;
+if (mapContainerWidth < 600) {
+  mapContainerHeight += 50;
+  mapContainerWidth += 30;
+}
 var colorRange = ['#eee','#43a2ca'];
 var populationDomain = [0, 1500, 3000];  
 
@@ -25,14 +31,14 @@ d3.selection.prototype.moveToBack = function() { return this.each(function() { v
 
 // Create SVG element
 var svg = d3.select("#idnMap").insert("svg", "p")
-            .attr("width", width*0.6)
-            .attr("height", height * 0.5)
+            .attr("width", mapContainerWidth)
+            .attr("height", mapContainerHeight)
             .attr("class", "map");
 var g = svg.append("g");
 var d3legend;
 var legend = svg.append("g")
   .attr("class", "legendQuant")
-  .attr("transform", "translate(20,"+(height / 3 + 50)+")");
+  .attr("transform", "translate(20,"+(mapContainerHeight * 0.9)+")");
 // Color
 var populationColorScale = d3.scaleLinear()
                         .domain(populationDomain)
@@ -41,9 +47,9 @@ var populationColorScale = d3.scaleLinear()
 
 // Projection and path
 var projection = d3.geoMercator()
-                    .center([118.25, -5])
-                    .scale(width * 0.6)
-                    .translate([width / 3 - 50, height / 4]);
+                    .center([115 + mapContainerWidth*0.005, -5])
+                    .scale(mapContainerWidth)
+                    .translate([mapContainerWidth * 0.55, mapContainerHeight * 0.5]);
 
 var path = d3.geoPath().projection(projection);
 
@@ -73,6 +79,27 @@ function KodeProdi(kodeProdiResult) {
       var matches = d["Nama Universitas"].match(/\b(\w)/g);              // ['J','S','O','N']
       var acronym = matches.join('');                  // JSON
       this[d["Kode Universitas"]].searchKeyword.push(acronym);
+      if (d["Website Universitas"] != "") {
+        var urlToken = d["Website Universitas"].replace(/(^\w+:|^)\/\//, '').replace(/\//, '').split(".");
+        for (var i = 0; i < urlToken.length; i++) {
+          if (urlToken[i] != "http" &&
+            urlToken[i] != "www" &&
+            urlToken[i] != "pmb" &&
+            urlToken[i] != "ac" &&
+            urlToken[i] != "id" &&
+            urlToken[i] != "edu" &&
+            urlToken[i] != "spmb") {
+            var pushedToken = urlToken[i].split("-");
+            for (var j = pushedToken.length - 1; j >= 0; j--) {
+              this[d["Kode Universitas"]].searchKeyword.push(pushedToken[j]);
+            }
+            this[d["Kode Universitas"]].searchKeyword.push(urlToken[i].replace(/-/, ' '));
+          }
+          
+        }
+      }
+      
+      
     }
     this[d["Kode Universitas"]].prodi.push({
       kode: d["Kode Prodi"],
@@ -196,14 +223,21 @@ d3.select(window).on("resize", resize);
 function resize() {
   width = window.innerWidth;
   height = window.innerHeight;
+  mapContainerWidth = $('#idnMap').width();
+  mapContainerHeight = mapContainerWidth *0.4;
+  if (mapContainerWidth < 600) {
+    mapContainerHeight += 50;
+    mapContainerWidth += 30;
+  }
 
-  projection.scale(width * 0.6)
-    .translate([width / 3 - 50, height / 4]);
+  projection.center([115 + mapContainerWidth*0.005, -5])
+  .scale(mapContainerWidth)
+    .translate([mapContainerWidth * 0.55, mapContainerHeight * 0.5]);
 
   d3.select("svg")
-    .attr("width", width*0.6)
-    .attr("height", height * 0.5);
-  legend.attr("transform", "translate(20,"+(height / 3 + 50)+")");
+    .attr("width", mapContainerWidth)
+    .attr("height", mapContainerHeight);
+  legend.attr("transform", "translate(20,"+(mapContainerHeight * 0.9)+")");
 
   d3.selectAll("path")
     .attr("d", path);

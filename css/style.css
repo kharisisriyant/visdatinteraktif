@@ -46,6 +46,50 @@ body {
 	background: hsl(0, 0%, 96%);
 }
 
+.borderless-big {
+    border:0px;
+    outline:0px;
+    background-color:white;
+    background:none;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url("../img/arrow.png") 90% / 25% no-repeat #fff;
+	cursor: pointer;
+	padding-right: 0.5em;
+	font-size: 2rem;
+}
+
+.borderless-medium {
+    border:0px;
+    outline:0px;
+    background-color:white;
+    background:none;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url("../img/arrow.png") 90% / 10% no-repeat #fff;
+	cursor: pointer;
+	padding-right: 1em;
+	font-size: 1.8rem;
+}
+
+
+.borderless-small {
+    border:0px;
+    outline:0px;
+    background-color:white;
+    background:none;
+    -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url("../img/arrow.png") 100% / 7% no-repeat #fff;
+	cursor: pointer;
+	padding-right: 1em;
+	font-size: 1.5em;
+}
+
+
 /************************************************************************/
 /*						FOR SIDE-FACTS									*/
 /************************************************************************/

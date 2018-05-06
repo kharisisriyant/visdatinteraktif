@@ -168,6 +168,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   registerSemuaUnivButton();
   registerSearchBar();
   registerSelectProdiDropdown();
+  registerStatistikFilter();
 }
 
 d3.select(window).on("resize", resize);
@@ -520,4 +521,11 @@ function reloadStatistikProdi() {
   }
   var inputData = buildStatistikProdiData(num, fromTop, sbmptnDataCondition, selectedUniv);
   updateTopProdiChart(inputData)
+}
+
+function registerStatistikFilter() {
+  $('#top-prodi-amount').change(reloadStatistikProdi);
+  $('#top-prodi-select').change(reloadStatistikProdi);
+  $('#top-prodi-base').change(reloadStatistikProdi);
+
 }

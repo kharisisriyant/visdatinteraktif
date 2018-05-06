@@ -464,7 +464,7 @@ function recolorMapWithCondition(condition) {
 
 }
 
-function buildStatistikProdiData(num, fromTop, sbmptnDataCondition, univName) {
+function buildStatistikProdiData(num, fromTop, sbmptnDataCondition, univName, method) {
   var prodiSet = [];
   var prodiData = [];
   sbmptnData.forEach(function(d, i) {
@@ -515,7 +515,7 @@ function buildStatistikProdiData(num, fromTop, sbmptnDataCondition, univName) {
     }
   }
   sortedProdiArray.sort(sortFunction);
-  resultData = [{"key": "", "values": []}]
+  resultData = [{"key": method, "values": []}]
   num = num < sortedProdiArray.length ? num : sortedProdiArray.length;
   for (var i = 0; i < num; i++) {
     var sortedKey = sortedProdiArray[i].key
@@ -533,12 +533,14 @@ function reloadStatistikProdi() {
   var fromTop = $('#top-prodi-select').val() == 1;
   var base = $('#top-prodi-base').val();
   var sbmptnDataCondition;
+  var method = ""
   var isCancel;
   switch(base) {
     case "1":
         sbmptnDataCondition = function (i, repeatedProdi, prevData) {
           return prevData + parseInt(sbmptnData[i].Jumlah);
         }
+        method = "Jumlah Pendaftar"
         break;
     case "2":
         sbmptnDataCondition = function (i, repeatedProdi, prevData) {
@@ -547,6 +549,7 @@ function reloadStatistikProdi() {
           }
           return parseInt(kodeProdi.dataByKodeProdi[sbmptnData[i].Prodi].jumlahPeminat);
         }
+        method = "Jumlah Peminat"
         break;
     case "3":
         sbmptnDataCondition = function (i, repeatedProdi, prevData) {
@@ -560,6 +563,7 @@ function reloadStatistikProdi() {
             ratio: true
           }
         }
+        method = "Keketatan"
         break;
     default:
       isCancel = true;
@@ -575,7 +579,7 @@ function reloadStatistikProdi() {
   if (isCancel) {
     return;
   }
-  var inputData = buildStatistikProdiData(num, fromTop, sbmptnDataCondition, selectedUniv);
+  var inputData = buildStatistikProdiData(num, fromTop, sbmptnDataCondition, selectedUniv, method);
   updateTopProdiChart(inputData)
 }
 

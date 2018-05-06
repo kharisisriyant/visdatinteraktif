@@ -62,11 +62,19 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
     $prodi.innerHTML = prodiName;
   }
 
-  if (numPictoOver > 100) {
-    $picto.attr("style", "display: none; height:8px; width:4px")
-  } else if (numPictoOver > 10) {
-    $picto.attr("style", "display: none; height:30px; width:15px")
+  var picSize = Math.round(175/numPictoOver + 2.5);
+
+  if (numPictoOver <= 10) {
+    $picto.attr("style", "display: none; height:40px; width:20px")
+  } else {
+    if (picSize < 4) {
+      picSize = 4;
+    } else if (picSize > 30) {
+      picSize = 30;
+    }
+    $picto.attr("style", "display: none; height:" + (picSize*2) + "px; width:" + picSize + "px")
   }
+
   for (var i = 0; i < numParticipated; ++i) {
     clone = $picto.clone()
     $exp.append(clone);

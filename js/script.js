@@ -271,7 +271,8 @@ function initSly() {
   slyelement.obj.init();
   
   lazyload = new LazyLoad({
-    elements_selector: ".lazyload"
+    elements_selector: ".lazyload",
+    class_loading: "spinner"
   });
   slyelement.obj.on('moveEnd', function() {
     lazyload.update()

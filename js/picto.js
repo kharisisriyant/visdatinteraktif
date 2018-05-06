@@ -86,7 +86,7 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum, univLink) 
   }
   displayPictogram(numPictoOver);
 
-  var penjelasan = "<b>" + acceptedNum + "</b> <span>dari</span> <b>" + registeredNum + "</b> peserta<br>lolos";
+  var penjelasan = "<b>" + acceptedNum.toLocaleString('de-DE') + "</b> <span>dari</span> <b>" + registeredNum.toLocaleString('de-DE') + "</b> peserta<br>lolos";
   // console.log(penjelasan);
   $successRate.innerHTML = penjelasan;
   

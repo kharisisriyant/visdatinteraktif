@@ -3,15 +3,56 @@ $(document).ready(function() {
   $('.not-search-selectbox').select2({
     minimumResultsForSearch: Infinity
   });
-  // updateTopProdiChart($('#top-prodi-amount').val(), $('#top-prodi-select').val(), $('#top-prodi-base').val(), $('#top-prodi-ptn').val());
+  data1 =
+        [{
+          "key": "",
+          "values": [
+            { 
+              "label" : "Prodi A Univ X" ,
+              "value" : 25645
+            }, 
+            { 
+              "label" : "Prodi B Univ Y" ,
+              "value" : 20765
+            },
+            { 
+              "label" : "Prodi C Univ Z" ,
+              "value" : 15678
+            }
+          ]
+        }]
+  updateTopProdiChart(data1);
   updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
+
+})
+
+$('#top-prodi-ptn').on('change', function() {
+  data2 = 
+    [{
+          "key": "",
+          "values": [
+            { 
+              "label" : "D" ,
+              "value" : 2
+            }, 
+            { 
+              "label" : "E" ,
+              "value" : 1
+            },
+            { 
+              "label" : "F" ,
+              "value" : 0
+            }
+          ]
+        }]
+  updateTopProdiChart(data2);
 })
 
 /************************************************************************************************/
 /*                                          FOR top-prodi                                       */
 /************************************************************************************************/
-var updateTopProdiChart = function(amount, select, base, ptn){
-  var data;
+var updateTopProdiChart = function(data){
+  var data = data;
   var chart;
   nv.addGraph(function() {
     chart = nv.models.multiBarHorizontalChart()
@@ -20,8 +61,14 @@ var updateTopProdiChart = function(amount, select, base, ptn){
         .margin({top: 30, right: 20, bottom: 50, left: 175})
         .showValues(true)           //Show bar value next to each bar.
         .tooltips(true)             //Show tooltips on hover.
-        .transitionDuration(350)
-        .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+        .barColor(function (d, i) {
+              var colors = d3v3.scale.category20().range().slice(3);
+              return colors[i % colors.length-1];
+          })
+        .showControls(false)
+        .stacked(true)
+        .showLegend(false)
+    ;        //Allow user to switch between "Grouped" and "Stacked" mode.
 
     chart.yAxis
         .tickFormat(d3v3.format('d'));
@@ -146,10 +193,9 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           // .height(300)
           .showYAxis(true)
           .showXAxis(true)
+          .reduceXTicks(true)
+          .staggerLabels(true)
       ;
-
-      console.log('masuk');
-      chart.reduceXTicks(false).staggerLabels(true);
 
       chart.yAxis
         .tickFormat(d3v3.format('d'))

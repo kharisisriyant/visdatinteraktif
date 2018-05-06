@@ -77,7 +77,20 @@ var updateTopProdiChart = function(data){
   else if(data[0].key == "Keketatan"){
     key = 3;
   }
-  console.log(JSON.stringify(data[0]));
+
+  for(i=0; i < data[0].values.length; i++){
+    console.log(data[0].values[i].value);
+    if((data[0].values[i].value == Infinity) || (data[0].values[i].value == null)){
+
+      if((key == 1) || (key == 2)){
+        data[0].values[i].value = 0;
+      }
+      else{
+        data[0].values[i].value = 1;
+      }
+    }
+  }
+
   nv.addGraph(function() {
     chart = nv.models.multiBarHorizontalChart()
         .x(function(d) { return d.label })
@@ -87,7 +100,7 @@ var updateTopProdiChart = function(data){
             }
             else{
               if(d.value == null){
-                return 0;
+                return 100;
               }
               else{
                 return (d.value * 100);
@@ -106,24 +119,28 @@ var updateTopProdiChart = function(data){
         .showLegend(false)
     ;
 
-    // chart.tooltipContent(function(key, label, value, graph) {
-    //   if(key === "Keketatan"){
-    //     if(value <= 1){
-    //       return '<h5><small>' + label + '</small></h5>' +
-    //       '<p>' + (value * 100)+ ' %</p>';  
-    //     }
-    //   }
-      
-    // });
     chart.tooltip.enabled();
     
     if((key == 1) || (key == 2)){
       chart.yAxis
-        .tickFormat(d3v3.format('d'));  
+        .tickFormat(d3v3.format('d'))
+      ;
+      if(key == 1){
+        chart.yAxis
+          .axisLabel("Jumlah Peserta yang Diterima")
+        ;
+      }
+      else{
+        chart.yAxis
+          .axisLabel("Jumlah Peminat")
+        ;
+      }
     }
     else{
       chart.yAxis
-        .tickFormat(d3v3.format('.2f'));
+        .tickFormat(d3v3.format('.2f'))
+        .axisLabel("Persentase Keketatan")
+      ;
     } 
 
     d3v3.select('#top-prodi-chart svg')

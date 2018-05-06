@@ -86,7 +86,7 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum, univLink) 
   }
   displayPictogram(numPictoOver);
 
-  var penjelasan = "<b>" + acceptedNum + "</b> <span>dari <b>" + registeredNum + "</b><br>lolos";
+  var penjelasan = "<b>" + acceptedNum + "</b> <span>dari</span> <b>" + registeredNum + "</b> peserta<br>lolos";
   // console.log(penjelasan);
   $successRate.innerHTML = penjelasan;
   
@@ -101,4 +101,3 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum, univLink) 
 function degToRad (deg) {
   return deg * Math.PI / 180;
 }
-

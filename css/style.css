@@ -213,6 +213,19 @@ svg.nvd3-svg {
     to   { opacity: 1; }
 }
 
+div#top-prodi-chart{
+  height: 280px;
+  overflow-y: auto;
+}
+
+#top-prodi-chart-svg{
+  height: 250px;
+}
+
+#top-prodi-chart-svg .nvd3 .nv-axis.nv-x text{
+  font-size: 10px;
+}
+
 /*****************************************/
 /**************for pictograph*************/
 /*****************************************/
@@ -303,19 +316,6 @@ label {
 	font-size: 12px;
 }
 
-div#top-prodi-chart{
-  height: 280px;
-  overflow-y: auto;
-}
-
-#top-prodi-chart-svg{
-  height: 250px;
-}
-
 .tabs{
   overflow: hidden;
-}
-
-#top-prodi-chart-svg .nvd3 .nv-axis.nv-x text{
-  font-size: 10px;
 }

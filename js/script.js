@@ -6,7 +6,6 @@ Array.prototype.removeIf = function(callback) {
         }
     }
 };
-
 $('.js-example-basic-single').select2();
 
 var width = window.innerWidth,
@@ -59,6 +58,7 @@ var sbmptnData;
 var kodeProdi;
 var peminatProdi;
 var logoURL = {};
+var lazyload;
 
 function KodeProdi(kodeProdiResult) {
   this.dataByKodePTN = [];
@@ -169,6 +169,8 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   registerSearchBar();
   registerSelectProdiDropdown();
   registerStatistikFilter();
+
+  reloadStatistikProdi();
 }
 
 d3.select(window).on("resize", resize);
@@ -227,6 +229,11 @@ function initSly() {
   
   slyelement.obj.init();
   
+  lazyload = new LazyLoad();
+  slyelement.obj.on('moveEnd', function() {
+    lazyload.update()
+  })
+
   filterSly("")
 }
 
@@ -284,6 +291,7 @@ function filterSly(searchString) {
     slyelement.obj.remove(0);
   }
   fuzzySearch(searchString)
+  lazyload.update()
 }
 
 function fuzzySearch(searchString) {
@@ -313,7 +321,7 @@ function fuzzySearch(searchString) {
     }
     var el = $('<li>').append(
       $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
-        $('<img>').attr("style","width: auto; height: 100%; display: block; margin: 0 auto;").attr("src","img/logo-univ/" + logoURL[d.name])
+        $('<img>').attr("style","width: auto; height: 100%; display: block; margin: 0 auto;").attr("data-src","img/logo-univ/" + logoURL[d.name])
       ),
       $('<p>', {class: 'content has-text-centered', html: d.name})
     )
@@ -464,7 +472,6 @@ function buildStatistikProdiData(num, fromTop, sbmptnDataCondition, univName) {
   num = num < sortedProdiArray.length ? num : sortedProdiArray.length;
   for (var i = 0; i < num; i++) {
     var sortedKey = sortedProdiArray[i].key
-    console.log(sortedProdiArray[i])
     if (univName == "Semua Universitas") {
       resultData[0].values.push({label: kodeProdi.dataByKodeProdi[sortedKey].name + " (" + kodeProdi.dataByKodeProdi[sortedKey].univ.name + ")", value: sortedProdiArray[i].val})
     } else {
@@ -512,9 +519,11 @@ function reloadStatistikProdi() {
       console.log("error: no base condition found");
   }
   var activeItemIndex = slyelement.obj.rel.activeItem;
-  var selectedUniv = $(slyelement.obj.items[activeItemIndex].el).find("p").text();
+  var selectedUniv;
   if (!$('#allUniv').hasClass('is-outlined')) {
     selectedUniv = "Semua Universitas"
+  } else {
+    selectedUniv = $(slyelement.obj.items[activeItemIndex].el).find("p").text()
   }
   if (isCancel) {
     return;

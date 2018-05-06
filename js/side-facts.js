@@ -79,7 +79,6 @@ var updateTopProdiChart = function(data){
   }
 
   for(i=0; i < data[0].values.length; i++){
-    console.log(data[0].values[i].value);
     if((data[0].values[i].value == Infinity) || (data[0].values[i].value == null)){
 
       if((key == 1) || (key == 2)){
@@ -99,12 +98,7 @@ var updateTopProdiChart = function(data){
               return d.value;
             }
             else{
-              if(d.value == null){
-                return 100;
-              }
-              else{
-                return (d.value * 100);
-              }
+              return (d.value * 100);
             }
           })
         .margin({top: 0, right: 14, bottom: 14, left: 150})
@@ -117,24 +111,22 @@ var updateTopProdiChart = function(data){
         .showControls(false)
         .stacked(true)
         .showLegend(false)
+        .showYAxis(true)
     ;
 
     chart.tooltip.enabled();
     
-    if((key == 1) || (key == 2)){
+    if(key == 1){
       chart.yAxis
         .tickFormat(d3v3.format('d'))
+        .axisLabel("Jumlah Peserta yang Diterima")
       ;
-      if(key == 1){
-        chart.yAxis
-          .axisLabel("Jumlah Peserta yang Diterima")
-        ;
-      }
-      else{
-        chart.yAxis
-          .axisLabel("Jumlah Peminat")
-        ;
-      }
+    }
+    else if(key == 2){
+      chart.yAxis
+        .tickFormat(d3v3.format('d'))
+        .axisLabel("Jumlah Peminat")
+      ;
     }
     else{
       chart.yAxis

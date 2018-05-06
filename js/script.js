@@ -420,9 +420,9 @@ function recolorMapWithCondition(condition) {
       return;
     }
     if (currentUniv == null) {
-      currentUniv = kodeProdi.dataByKodeProdi[d.Prodi].univ.name;
+      currentUniv = kodeProdi.dataByKodeProdi[d.Prodi].univ;
     } else {
-      if (currentUniv != "Semua Universitas" && currentUniv != kodeProdi.dataByKodeProdi[d.Prodi].univ.name) {
+      if (currentUniv != "Semua Universitas" && currentUniv.name != kodeProdi.dataByKodeProdi[d.Prodi].univ.name) {
         currentUniv = "Semua Universitas"
       }
     }
@@ -443,7 +443,11 @@ function recolorMapWithCondition(condition) {
     }
   });
   populationColorScale = populationColorScale.domain([0, 1 * maxPop/2, maxPop])
-  drawPictos(currentUniv, currentProdi, totalTerima, totalPeminat);
+  if (currentUniv == "Semua Universitas") {
+    drawPictos(currentUniv, currentProdi, totalTerima, totalPeminat);
+  } else {
+    drawPictos(currentUniv.name, currentProdi, totalTerima, totalPeminat, currentUniv.website);
+  }
   reloadStatistikProdi();
   g.selectAll("path")
     .transition().duration(500)
@@ -570,11 +574,11 @@ function reloadStatistikProdi() {
       isCancel = true;
       console.log("error: no base condition found");
   }
-  var activeItemIndex = slyelement.obj.rel.activeItem;
   var selectedUniv;
   if (!$('#allUniv').hasClass('is-outlined')) {
     selectedUniv = "Semua Universitas"
   } else {
+    var activeItemIndex = slyelement.obj.rel.activeItem;
     selectedUniv = $(slyelement.obj.items[activeItemIndex].el).find("p").text()
   }
   if (isCancel) {

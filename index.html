@@ -28,162 +28,172 @@
             <div class="tile is-ancestor">
                 <div class="tile is-parent is-8 is-vertical">
                     <div class="tile is-child">
-                        <div id="idnMap"></div>
-                    </div>
-                    
-                    <div class="tile is-child" style="padding: 0;">
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                <input id="searchUniv" class="input" type="text" placeholder="Cari Universitas">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent is-vertical is-12">
+                                <div class="tile is-child">
+                                    <div id="idnMap"></div>
+                                </div>
+                                
+                                <div class="tile is-child" style="padding: 0;">
+                                    <div class="field has-addons">
+                                        <div class="control is-expanded">
+                                            <input id="searchUniv" class="input" type="text" placeholder="Cari Universitas">
+                                        </div>
+                                        <div class="control">
+                                            <a class="button is-info" id="allUniv">
+                                                Semua Universitas
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="field">
+                                        <div class="control is-expanded">
+                                            <span class="is-fullwidth">
+                                                <select class="js-example-basic-single js-states" id="prodSelect" style="width: 100%">
+                                                    <option val="all">Semua Prodi</option>
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="box">
+                                        <div class="frame">
+                                            <ul class="slidee">
+                                            </ul>
+                                        </div>
+                                        <div class="scrollbar">
+                                            <div class="handle"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="control">
-                                <a class="button is-info" id="allUniv">
-                                    Semua Universitas
-                                </a>
-                            </div>
-                            
                         </div>
-                        <div class="field">
-                            <div class="control is-expanded">
-                                <span class="is-fullwidth">
-                                    <select class="js-example-basic-single js-states" id="prodSelect" style="width: 100%">
-                                        <option val="all">Semua Prodi</option>
-                                    </select>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="frame">
-                                <ul class="slidee">
-                                </ul>
-                            </div>
-                            <div class="scrollbar">
-                                <div class="handle"></div>
-                            </div>
-                        </div>                        
                     </div>
                 </div>
                 <div class="tile is-parent is-4 is-vertical">
-                    <div class="tile is-child box" id="picto">
-                        <div class="univ is-size-3 has-text-weight-bold"></div>
-                        <div class="prodi is-size-4"></div>
-                        <div id="picto-content">
-                            <div id="expected">
-                                <label class="label is-size-5">Diterima</label>
-                                <div id="expected-content">
-                                </div>
-                            </div>
-                            <div id="unexpected">
-                                <label class="label is-size-5">&nbsp;&nbsp;Mendaftar</label>
-                                <div id="unexpected-content">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="success-rate">
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="tabs">
-                            <ul>
-                                <li class="main-tab-link is-active" onClick="openMainTab(event, 'top-prodi')"><a>Statistik Prodi</a></li>
-                                <li class="main-tab-link" onClick="openMainTab(event, 'statistik-kelompok-pilihan-ujian')"><a>Statistik Kelompok</a></li>
-                                <li class="main-tab-link" onClick="openMainTab(event, 'statistik-nilai-rataan-diterima-tertinggi')"><a>Top Ten</a></li>
-                            </ul>
-                        </div>
-                        <div class="tile is-child main-tab-content" id="top-prodi">
-                            <div id="top-prodi-filter">
-                                <span>
-                                    <select class="borderless-big" id="top-prodi-amount">
-                                        <option value="3">3</option>
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                    </select>
-                                </span>
-                                <span style="display: inline-block;">
-                                    <p>program studi</p>
-                                </span>
-                                
-                                <select class="borderless-medium" id="top-prodi-select">
-                                    <option value="1">Teratas</option>
-                                    <option value="0">Terbawah</option>
-                                </select>
-                                <span style="display: inline-block;">
-                                    <p>berdasarkan</p>
-                                </span>
-                                <select class="borderless-small" id="top-prodi-base">
-                                    <option value="1">Jumlah Peserta yang Diterima</option>
-                                    <option value="2">Jumlah Peminat</option>
-                                    <option value="3">Keketatan</option>
-                                </select>
-                                <span style="display: inline-block;">
-                                    <p>dari
-                                        <span id="statsUniv" class="is-size-6 is-italic">Semua Universitas</span>
-                                    </p>
-                                </span>
-                            </div>
-                            <div id="top-prodi-chart">
-                                <svg height="250"></svg>
-                            </div>
-                        </div>
-                        <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
-                            <div id="statistik-kelompok-pilihan-ujian-filter">
-                                Tampilkan chart berdasarkan kelompok:
-                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
-                                    <option value="1">Pilihan</option>
-                                    <option value="2">Ujian</option>
-                                </select>
-                            </div>
-                            <div id="statistik-kelompok-pilihan-ujian-chart">
-                                <svg style="height:300px;"></svg>
-                            </div>
-                        </div>
-                        <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
-                            <div id="statistik-nilai-rataan-diterima-tertinggi-title">
-                                <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
-                            </div>
-                            <!-- Tab links -->
-                            <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
-                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
-                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
-                            </div>
-                            <!-- Tab content -->
-                            <div style="height:400px;">
-                                <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
-                                    <div class="is-one-fifth">
+                    <div class="tile is-child">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent is-vertical is-12">
+                                <div class="tile is-child box" id="picto">
+                                    <div class="univ is-size-3 has-text-weight-bold"></div>
+                                    <div class="prodi is-size-4"></div>
+                                    <div id="picto-content">
+                                        <div id="expected">
+                                            <label class="label is-size-5">Diterima</label>
+                                            <div id="expected-content">
+                                            </div>
+                                        </div>
+                                        <div id="unexpected">
+                                            <label class="label is-size-5">&nbsp;&nbsp;Mendaftar</label>
+                                            <div id="unexpected-content">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
-                                        <li>Institut Teknologi Bandung</li>
-                                        <li>Universitas Indonesia</li>
-                                        <li>Universitas Gajah Mada</li>
-                                        <li>Institut Teknologi Sepuluh Nopember</li>
-                                        <li>Universitas Airlangga</li>
-                                        <li>Universitas Padjadjaran</li>
-                                        <li>Universitas Diponegoro</li>
-                                        <li>Institut Pertanian Bogor</li>
-                                        <li>Universitas Sebelas Maret</li>
-                                        <li>UPN "Veteran" Yogyakarta</li>
-                                    </ol>
-                                    <div class="is-one-fifth">
+                                    <div class="success-rate">
                                     </div>
                                 </div>
-                                <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
-                                    <div class="is-one-fifth">
+                                <div class="tile is-child box">
+                                    <div class="tabs">
+                                        <ul>
+                                            <li class="main-tab-link is-active" onClick="openMainTab(event, 'top-prodi')"><a>Statistik Prodi</a></li>
+                                            <li class="main-tab-link" onClick="openMainTab(event, 'statistik-kelompok-pilihan-ujian')"><a>Statistik Pengelompokan Pendaftar</a></li>
+                                            <li class="main-tab-link" onClick="openMainTab(event, 'statistik-nilai-rataan-diterima-tertinggi')"><a>Top Ten</a></li>
+                                        </ul>
                                     </div>
-                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
-                                        <li>Universitas Indonesia</li>
-                                        <li>Universitas Gajah Mada</li>
-                                        <li>Institut Teknologi Bandung</li>
-                                        <li>Universitas Padjadjaran</li>
-                                        <li>Universitas Airlangga</li>
-                                        <li>Universitas Diponegoro</li>
-                                        <li>Universitas Brawijaya</li>
-                                        <li>UPN "Veteran" Yogyakarta</li>
-                                        <li>Universitas Sebelas Maret</li>
-                                        <li>Universitas Jenderal Soedirman</li>
-                                    </ol>
-                                    <div class="is-one-fifth">
+                                    <div class="tile is-child main-tab-content" id="top-prodi">
+                                        <div id="top-prodi-filter">
+                                            <span>
+                                                <select class="borderless-big" id="top-prodi-amount">
+                                                    <option value="3">3</option>
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </span>
+                                            <span style="display: inline-block;">
+                                                <p>program studi</p>
+                                            </span>
+                                            
+                                            <select class="borderless-medium" id="top-prodi-select">
+                                                <option value="1">Teratas</option>
+                                                <option value="0">Terbawah</option>
+                                            </select>
+                                            <span style="display: inline-block;">
+                                                <p>berdasarkan</p>
+                                            </span>
+                                            <select class="borderless-small" id="top-prodi-base">
+                                                <option value="1">Jumlah Peserta yang Diterima</option>
+                                                <option value="2">Jumlah Peminat</option>
+                                                <option value="3">Keketatan</option>
+                                            </select>
+                                            <span style="display: inline-block;">
+                                                <p>dari
+                                                    <span id="statsUniv" class="is-size-6 is-italic">Semua Universitas</span>
+                                                </p>
+                                            </span>
+                                        </div>
+                                        <div id="top-prodi-chart">
+                                        <svg height="250"></svg>
+                                    </div>
+                                </div>
+                                <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
+                                    <div id="statistik-kelompok-pilihan-ujian-filter">
+                                        Tampilkan chart berdasarkan kelompok:
+                                        <select class="borderless-medium" id="statistik-kelompok-pilihan-ujian-select">
+                                            <option value="1">Pilihan</option>
+                                            <option value="2">Ujian</option>
+                                        </select>
+                                    </div>
+                                    <div id="statistik-kelompok-pilihan-ujian-chart">
+                                    <svg style="height:300px;"></svg>
+                                </div>
+                            </div>
+                            <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
+                                <div id="statistik-nilai-rataan-diterima-tertinggi-title">
+                                    <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+                                </div>
+                                <!-- Tab links -->
+                                <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
+                                    <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
+                                    <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+                                </div>
+                                <!-- Tab content -->
+                                <div style="height:400px;">
+                                    <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
+                                        <div class="is-one-fifth">
+                                        </div>
+                                        <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
+                                            <li>Institut Teknologi Bandung</li>
+                                            <li>Universitas Indonesia</li>
+                                            <li>Universitas Gajah Mada</li>
+                                            <li>Institut Teknologi Sepuluh Nopember</li>
+                                            <li>Universitas Airlangga</li>
+                                            <li>Universitas Padjadjaran</li>
+                                            <li>Universitas Diponegoro</li>
+                                            <li>Institut Pertanian Bogor</li>
+                                            <li>Universitas Sebelas Maret</li>
+                                            <li>UPN "Veteran" Yogyakarta</li>
+                                        </ol>
+                                        <div class="is-one-fifth">
+                                        </div>
+                                    </div>
+                                    <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
+                                        <div class="is-one-fifth">
+                                        </div>
+                                        <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
+                                            <li>Universitas Indonesia</li>
+                                            <li>Universitas Gajah Mada</li>
+                                            <li>Institut Teknologi Bandung</li>
+                                            <li>Universitas Padjadjaran</li>
+                                            <li>Universitas Airlangga</li>
+                                            <li>Universitas Diponegoro</li>
+                                            <li>Universitas Brawijaya</li>
+                                            <li>UPN "Veteran" Yogyakarta</li>
+                                            <li>Universitas Sebelas Maret</li>
+                                            <li>Universitas Jenderal Soedirman</li>
+                                        </ol>
+                                        <div class="is-one-fifth">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -191,30 +201,34 @@
                     </div>
                 </div>
             </div>
+            
+            
         </div>
-        <div id="templates" style="display: none;">
-            <div class="picto" style="display: none;">
-                <img src="img/clip.png" height="100%">
-            </div>
-        </div>
-        <!-- D3.js Source -->
-        <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-        <script src="https://d3js.org/topojson.v3.min.js"></script>
-        <script
-        src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-        <script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.7.1/lazyload.min.js"></script>
-        <!-- Script -->
-        <script type="text/javascript" src="js/picto.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-        <!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
-        <script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
-        <script type="text/javascript" src="js/nv.d3.js"></script>
-        <script type="text/javascript" src="js/side-facts.js"></script>
-    </body>
+    </div>
+</div>
+<div id="templates" style="display: none;">
+    <div class="picto" style="display: none;">
+        <img src="img/clip.png" height="100%">
+    </div>
+</div>
+<!-- D3.js Source -->
+<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+<script src="https://d3js.org/topojson.v3.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-1.12.4.min.js"
+integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.7.1/lazyload.min.js"></script>
+<!-- Script -->
+<script type="text/javascript" src="js/picto.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
+<script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<script type="text/javascript" src="js/side-facts.js"></script>
+</body>
 </html>

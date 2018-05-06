@@ -276,6 +276,13 @@ function openMainTab(evt, listName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";
     evt.currentTarget.className += " is-active";
+
+    if (listName == "top-prodi") {
+      reloadStatistikProdi();
+    } else if (listName == "statistik-kelompok-pilihan-ujian") {
+      updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
+    }
+
 }
 
 function initialMainTab(listName) {
@@ -299,11 +306,5 @@ function initialMainTab(listName) {
 
     // var classname = $($('.box > .tabs .main-tab-link')[0]).attr("class");
     $($('.box > .tabs .main-tab-link')[0]).addClass("is-active");
-
-    if (listName == "top-prodi") {
-      reloadStatistikProdi();
-    } else if (listName == "statistik-kelompok-pilihan-ujian") {
-      updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
-    }
 
 }

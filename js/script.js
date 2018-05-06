@@ -25,7 +25,7 @@ d3.selection.prototype.moveToBack = function() { return this.each(function() { v
 
 // Create SVG element
 var svg = d3.select("#idnMap").insert("svg", "p")
-            .attr("width", width)
+            .attr("width", width*0.6)
             .attr("height", height * 0.5)
             .attr("class", "map");
 var g = svg.append("g");
@@ -178,7 +178,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   g.selectAll("path")
     .append("title")
     .text(function(d) {
-      return d.properties.province + " : " + populationData[d.properties.province];
+      return d.properties.province + " : " + populationData[d.properties.province] + " mahasiswa";
     });
 
   initSly();
@@ -201,7 +201,7 @@ function resize() {
     .translate([width / 3 - 50, height / 4]);
 
   d3.select("svg")
-    .attr("width", width)
+    .attr("width", width*0.6)
     .attr("height", height * 0.5);
   legend.attr("transform", "translate(20,"+(height / 3 + 50)+")");
 
@@ -459,7 +459,7 @@ function recolorMapWithCondition(condition) {
   g.selectAll("path")
     .select("title")
     .text(function(d) {
-      return d.properties.province + " : " + populationData[d.properties.province];
+      return d.properties.province + " : " + populationData[d.properties.province] + " mahasiswa";
     });
 
 }

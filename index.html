@@ -78,217 +78,216 @@
                     <div class="box">
                         <div class="tabs">
                             <ul>
-                                <li class="is-active"><a>Statistik Prodi</a></li>
-                                <li><a>Music</a></li>
-                                <li><a>Videos</a></li>
-                                <li><a>Documents</a></li>
+                                <li class="main-tab-link is-active"><a onClick="openMainTab(event, 'top-prodi')">Statistik Prodi</a></li>
+                                <li class="main-tab-link"><a onClick="openMainTab(event, 'statistik-kelompok-pilihan-ujian')">Statistik Kelompok</a></li>
+                                <li class="main-tab-link"><a onClick="openMainTab(event, 'statistik-nilai-rataan-diterima-tertinggi')">Top Ten</a></li>
                             </ul>
                         </div>
-                        <div class="tile is-child" id="top-prodi">
-                        <div id="top-prodi-filter">
-                            Tampilkan
-                            <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-amount">
-                                <option value="3">3</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                            </select>
-                            <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-select">
-                                <option value="1">Teratas</option>
-                                <option value="0">Terbawah</option>
-                            </select>
-                            program studi berdasarkan
-                            <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-base">
-                                <option value="1">Jumlah Peserta yang Diterima</option>
-                                <option value="2">Jumlah Peminat</option>
-                                <option value="3">Keketatan</option>
-                            </select>
-                            dari
-                            <select class="js-example-basic-single js-states form-control" id="top-prodi-ptn">
-                                <option value="0">Semua PTN</option>
-                                <option value="10">ISBI ACEH</option>
-                                <option value="11">UNIVERSITAS SYIAH KUALA</option>
-                                <option value="12">UNIVERSITAS MALIKUSSALEH</option>
-                                <option value="13">UNIVERSITAS TEUKU UMAR</option>
-                                <option value="14">UNIVERSITAS NEGERI MEDAN</option>
-                                <option value="15">UNIVERSITAS SUMATERA UTARA</option>
-                                <option value="16">UNIVERSITAS SAMUDRA</option>
-                                <option value="17">UNIVERSITAS NEGERI PADANG</option>
-                                <option value="18">UNIVERSITAS ANDALAS</option>
-                                <option value="19">UNIVERSITAS RIAU</option>
-                                <option value="20">UNIVERSITAS ISLAM NEGERI SULTAN SYARIF KASIM</option>
-                                <option value="21">UNIVERSITAS JAMBI</option>
-                                <option value="22">UNIVERSITAS MARITIM RAJA ALI HAJI</option>
-                                <option value="23">UNIVERSITAS SRIWIJAYA</option>
-                                <option value="24">UNIVERSITAS BANGKA BELITUNG</option>
-                                <option value="25">UNIVERSITAS BENGKULU</option>
-                                <option value="26">INSTITUT TEKNOLOGI SUMATERA</option>
-                                <option value="27">UNIVERSITAS LAMPUNG</option>
-                                <option value="28">UNIVERSITAS ISLAM NEGERI RADEN FATAH</option>
-                                <option value="29">UNIVERSITAS ISLAM NEGERI AR-RANIRY</option>
-                                <option value="30">UNIVERSITAS NEGERI JAKARTA</option>
-                                <option value="31">UNIVERSITAS INDONESIA</option>
-                                <option value="32">UNIVERSITAS ISLAM NEGERI JAKARTA</option>
-                                <option value="33">INSTITUT PERTANIAN BOGOR</option>
-                                <option value="34">UNIVERSITAS PENDIDIKAN INDONESIA</option>
-                                <option value="35">INSTITUT TEKNOLOGI BANDUNG</option>
-                                <option value="36">UNIVERSITAS PADJADJARAN</option>
-                                <option value="37">UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI</option>
-                                <option value="38">UNIVERSITAS SULTAN AGENG TIRTAYASA</option>
-                                <option value="39">UPN "VETERAN" JAKARTA</option>
-                                <option value="40">UNIVERSITAS SILIWANGI</option>
-                                <option value="41">UNIVERSITAS JENDERAL SOEDIRMAN</option>
-                                <option value="42">UNIVERSITAS NEGERI SEMARANG</option>
-                                <option value="43">UNIVERSITAS DIPONEGORO</option>
-                                <option value="44">UNIVERSITAS SEBELAS MARET</option>
-                                <option value="45">UNIVERSITAS ISLAM NEGERI WALISONGO</option>
-                                <option value="46">UNIVERSITAS NEGERI YOGYAKARTA</option>
-                                <option value="47">UNIVERSITAS GADJAH MADA</option>
-                                <option value="48">UNIVERSITAS ISLAM NEGERI SUNAN KALIJAGA</option>
-                                <option value="49">UPN "VETERAN" YOGYAKARTA</option>
-                                <option value="50">UNIVERSITAS NEGERI SURABAYA</option>
-                                <option value="51">INSTITUT TEKNOLOGI SEPULUH NOPEMBER</option>
-                                <option value="52">UNIVERSITAS AIRLANGGA</option>
-                                <option value="53">UNIVERSITAS TRUNOJOYO MADURA</option>
-                                <option value="54">UNIVERSITAS ISLAM NEGERI SUNAN AMPEL SURABAYA</option>
-                                <option value="55">UNIVERSITAS NEGERI MALANG</option>
-                                <option value="56">UNIVERSITAS BRAWIJAYA</option>
-                                <option value="57">UNIVERSITAS ISLAM NEGERI MALANG</option>
-                                <option value="58">UNIVERSITAS JEMBER</option>
-                                <option value="59">UPN "VETERAN" JAWA TIMUR</option>
-                                <option value="60">ISI PADANG PANJANG</option>
-                                <option value="61">ISBI BANDUNG</option>
-                                <option value="62">ISI YOGYAKARTA</option>
-                                <option value="63">UNIVERSITAS UDAYANA</option>
-                                <option value="64">UNIVERSITAS PENDIDIKAN GANESHA</option>
-                                <option value="65">UNIVERSITAS MATARAM</option>
-                                <option value="66">UNIVERSITAS NUSA CENDANA</option>
-                                <option value="67">UNIVERSITAS TIMOR</option>
-                                <option value="68">ISI SURAKARTA</option>
-                                <option value="69">ISI DENPASAR</option>
-                                <option value="71">UNIVERSITAS TANJUNGPURA</option>
-                                <option value="73">UNIVERSITAS PALANGKARAYA</option>
-                                <option value="75">UNIVERSITAS LAMBUNG MANGKURAT</option>
-                                <option value="77">UNIVERSITAS MULAWARMAN</option>
-                                <option value="78">UNIVERSITAS BORNEO TARAKAN</option>
-                                <option value="79">INSTITUT TEKNOLOGI KALIMANTAN</option>
-                                <option value="80">UNIVERSITAS NEGERI MAKASSAR</option>
-                                <option value="81">UNIVERSITAS ISLAM NEGERI ALAUDDIN</option>
-                                <option value="82">UNIVERSITAS HASANUDDIN</option>
-                                <option value="83">UNIVERSITAS TADULAKO</option>
-                                <option value="84">UNIVERSITAS HALUOLEO</option>
-                                <option value="85">UNIVERSITAS NEGERI GORONTALO</option>
-                                <option value="86">UNIVERSITAS NEGERI MANADO</option>
-                                <option value="87">UNIVERSITAS SAM RATULANGI</option>
-                                <option value="88">UNIVERSITAS SULAWESI BARAT</option>
-                                <option value="89">UNIVERSITAS SEMBILAN BELAS NOVEMBER KOLAKA</option>
-                                <option value="90">UNIVERSITAS SINGAPERBANGSA KARAWANG</option>
-                                <option value="91">UNIVERSITAS TIDAR</option>
-                                <option value="92">UNIVERSITAS ISLAM NEGERI SUMATERA UTARA</option>
-                                <option value="93">UNIVERSITAS PATTIMURA</option>
-                                <option value="94">UNIVERSITAS CENDERAWASIH</option>
-                                <option value="95">UNIVERSITAS KHAIRUN</option>
-                                <option value="96">UNIVERSITAS PAPUA</option>
-                                <option value="97">ISBI TANAH PAPUA</option>
-                                <option value="98">UNIVERSITAS MUSAMUS MERAUKE</option>
-                            </select>
+                        <div class="tile is-child main-tab-content" id="top-prodi">
+                            <div id="top-prodi-filter">
+                                Tampilkan
+                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-amount">
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-select">
+                                    <option value="1">Teratas</option>
+                                    <option value="0">Terbawah</option>
+                                </select>
+                                program studi berdasarkan
+                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="top-prodi-base">
+                                    <option value="1">Jumlah Peserta yang Diterima</option>
+                                    <option value="2">Jumlah Peminat</option>
+                                    <option value="3">Keketatan</option>
+                                </select>
+                                dari
+                                <select class="js-example-basic-single js-states form-control" id="top-prodi-ptn">
+                                    <option value="0">Semua PTN</option>
+                                    <option value="10">ISBI ACEH</option>
+                                    <option value="11">UNIVERSITAS SYIAH KUALA</option>
+                                    <option value="12">UNIVERSITAS MALIKUSSALEH</option>
+                                    <option value="13">UNIVERSITAS TEUKU UMAR</option>
+                                    <option value="14">UNIVERSITAS NEGERI MEDAN</option>
+                                    <option value="15">UNIVERSITAS SUMATERA UTARA</option>
+                                    <option value="16">UNIVERSITAS SAMUDRA</option>
+                                    <option value="17">UNIVERSITAS NEGERI PADANG</option>
+                                    <option value="18">UNIVERSITAS ANDALAS</option>
+                                    <option value="19">UNIVERSITAS RIAU</option>
+                                    <option value="20">UNIVERSITAS ISLAM NEGERI SULTAN SYARIF KASIM</option>
+                                    <option value="21">UNIVERSITAS JAMBI</option>
+                                    <option value="22">UNIVERSITAS MARITIM RAJA ALI HAJI</option>
+                                    <option value="23">UNIVERSITAS SRIWIJAYA</option>
+                                    <option value="24">UNIVERSITAS BANGKA BELITUNG</option>
+                                    <option value="25">UNIVERSITAS BENGKULU</option>
+                                    <option value="26">INSTITUT TEKNOLOGI SUMATERA</option>
+                                    <option value="27">UNIVERSITAS LAMPUNG</option>
+                                    <option value="28">UNIVERSITAS ISLAM NEGERI RADEN FATAH</option>
+                                    <option value="29">UNIVERSITAS ISLAM NEGERI AR-RANIRY</option>
+                                    <option value="30">UNIVERSITAS NEGERI JAKARTA</option>
+                                    <option value="31">UNIVERSITAS INDONESIA</option>
+                                    <option value="32">UNIVERSITAS ISLAM NEGERI JAKARTA</option>
+                                    <option value="33">INSTITUT PERTANIAN BOGOR</option>
+                                    <option value="34">UNIVERSITAS PENDIDIKAN INDONESIA</option>
+                                    <option value="35">INSTITUT TEKNOLOGI BANDUNG</option>
+                                    <option value="36">UNIVERSITAS PADJADJARAN</option>
+                                    <option value="37">UNIVERSITAS ISLAM NEGERI SUNAN GUNUNG DJATI</option>
+                                    <option value="38">UNIVERSITAS SULTAN AGENG TIRTAYASA</option>
+                                    <option value="39">UPN "VETERAN" JAKARTA</option>
+                                    <option value="40">UNIVERSITAS SILIWANGI</option>
+                                    <option value="41">UNIVERSITAS JENDERAL SOEDIRMAN</option>
+                                    <option value="42">UNIVERSITAS NEGERI SEMARANG</option>
+                                    <option value="43">UNIVERSITAS DIPONEGORO</option>
+                                    <option value="44">UNIVERSITAS SEBELAS MARET</option>
+                                    <option value="45">UNIVERSITAS ISLAM NEGERI WALISONGO</option>
+                                    <option value="46">UNIVERSITAS NEGERI YOGYAKARTA</option>
+                                    <option value="47">UNIVERSITAS GADJAH MADA</option>
+                                    <option value="48">UNIVERSITAS ISLAM NEGERI SUNAN KALIJAGA</option>
+                                    <option value="49">UPN "VETERAN" YOGYAKARTA</option>
+                                    <option value="50">UNIVERSITAS NEGERI SURABAYA</option>
+                                    <option value="51">INSTITUT TEKNOLOGI SEPULUH NOPEMBER</option>
+                                    <option value="52">UNIVERSITAS AIRLANGGA</option>
+                                    <option value="53">UNIVERSITAS TRUNOJOYO MADURA</option>
+                                    <option value="54">UNIVERSITAS ISLAM NEGERI SUNAN AMPEL SURABAYA</option>
+                                    <option value="55">UNIVERSITAS NEGERI MALANG</option>
+                                    <option value="56">UNIVERSITAS BRAWIJAYA</option>
+                                    <option value="57">UNIVERSITAS ISLAM NEGERI MALANG</option>
+                                    <option value="58">UNIVERSITAS JEMBER</option>
+                                    <option value="59">UPN "VETERAN" JAWA TIMUR</option>
+                                    <option value="60">ISI PADANG PANJANG</option>
+                                    <option value="61">ISBI BANDUNG</option>
+                                    <option value="62">ISI YOGYAKARTA</option>
+                                    <option value="63">UNIVERSITAS UDAYANA</option>
+                                    <option value="64">UNIVERSITAS PENDIDIKAN GANESHA</option>
+                                    <option value="65">UNIVERSITAS MATARAM</option>
+                                    <option value="66">UNIVERSITAS NUSA CENDANA</option>
+                                    <option value="67">UNIVERSITAS TIMOR</option>
+                                    <option value="68">ISI SURAKARTA</option>
+                                    <option value="69">ISI DENPASAR</option>
+                                    <option value="71">UNIVERSITAS TANJUNGPURA</option>
+                                    <option value="73">UNIVERSITAS PALANGKARAYA</option>
+                                    <option value="75">UNIVERSITAS LAMBUNG MANGKURAT</option>
+                                    <option value="77">UNIVERSITAS MULAWARMAN</option>
+                                    <option value="78">UNIVERSITAS BORNEO TARAKAN</option>
+                                    <option value="79">INSTITUT TEKNOLOGI KALIMANTAN</option>
+                                    <option value="80">UNIVERSITAS NEGERI MAKASSAR</option>
+                                    <option value="81">UNIVERSITAS ISLAM NEGERI ALAUDDIN</option>
+                                    <option value="82">UNIVERSITAS HASANUDDIN</option>
+                                    <option value="83">UNIVERSITAS TADULAKO</option>
+                                    <option value="84">UNIVERSITAS HALUOLEO</option>
+                                    <option value="85">UNIVERSITAS NEGERI GORONTALO</option>
+                                    <option value="86">UNIVERSITAS NEGERI MANADO</option>
+                                    <option value="87">UNIVERSITAS SAM RATULANGI</option>
+                                    <option value="88">UNIVERSITAS SULAWESI BARAT</option>
+                                    <option value="89">UNIVERSITAS SEMBILAN BELAS NOVEMBER KOLAKA</option>
+                                    <option value="90">UNIVERSITAS SINGAPERBANGSA KARAWANG</option>
+                                    <option value="91">UNIVERSITAS TIDAR</option>
+                                    <option value="92">UNIVERSITAS ISLAM NEGERI SUMATERA UTARA</option>
+                                    <option value="93">UNIVERSITAS PATTIMURA</option>
+                                    <option value="94">UNIVERSITAS CENDERAWASIH</option>
+                                    <option value="95">UNIVERSITAS KHAIRUN</option>
+                                    <option value="96">UNIVERSITAS PAPUA</option>
+                                    <option value="97">ISBI TANAH PAPUA</option>
+                                    <option value="98">UNIVERSITAS MUSAMUS MERAUKE</option>
+                                </select>
+                            </div>
+                            <div id="top-prodi-chart">
+                                <svg height="250"></svg>
+                            </div>
                         </div>
-                        <div id="top-prodi-chart">
-                        <svg height="250"></svg>
-                    </div>
-                    </div>
-                    
-                </div>
-                <div class="tile is-child" id="statistik-kelompok-pilihan-ujian">
-                    <div id="statistik-kelompok-pilihan-ujian-title">
-                        <h2>Statistik Pengelompokan Pendaftar</h2>
-                    </div>
-                    <div id="statistik-kelompok-pilihan-ujian-filter">
-                        Tampilkan chart berdasarkan kelompok:
-                        <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
-                            <option value="1">Pilihan</option>
-                            <option value="2">Ujian</option>
-                        </select>
-                    </div>
-                    <div id="statistik-kelompok-pilihan-ujian-chart">
-                    <svg style="height:300px;"></svg>
-                </div>
-            </div>
-            <div class="tile is-child" id="statistik-nilai-rataan-diterima-tertinggi">
-                <div id="statistik-nilai-rataan-diterima-tertinggi-title">
-                    <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
-                </div>
-                <!-- Tab links -->
-                <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
-                    <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
-                    <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
-                </div>
-                <!-- Tab content -->
-                <div style="height:400px;">
-                    <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
-                        <div class="is-one-fifth">
+                        <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
+                            <div id="statistik-kelompok-pilihan-ujian-title">
+                                <h2>Statistik Pengelompokan Pendaftar</h2>
+                            </div>
+                            <div id="statistik-kelompok-pilihan-ujian-filter">
+                                Tampilkan chart berdasarkan kelompok:
+                                <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
+                                    <option value="1">Pilihan</option>
+                                    <option value="2">Ujian</option>
+                                </select>
+                            </div>
+                            <div id="statistik-kelompok-pilihan-ujian-chart">
+                                <svg style="height:300px;"></svg>
+                            </div>
                         </div>
-                        <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
-                            <li>Institut Teknologi Bandung</li>
-                            <li>Universitas Indonesia</li>
-                            <li>Universitas Gajah Mada</li>
-                            <li>Institut Teknologi Sepuluh Nopember</li>
-                            <li>Universitas Airlangga</li>
-                            <li>Universitas Padjadjaran</li>
-                            <li>Universitas Diponegoro</li>
-                            <li>Institut Pertanian Bogor</li>
-                            <li>Universitas Sebelas Maret</li>
-                            <li>UPN "Veteran" Yogyakarta</li>
-                        </ol>
-                        <div class="is-one-fifth">
-                        </div>
-                    </div>
-                    <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
-                        <div class="is-one-fifth">
-                        </div>
-                        <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
-                            <li>Universitas Indonesia</li>
-                            <li>Universitas Gajah Mada</li>
-                            <li>Institut Teknologi Bandung</li>
-                            <li>Universitas Padjadjaran</li>
-                            <li>Universitas Airlangga</li>
-                            <li>Universitas Diponegoro</li>
-                            <li>Universitas Brawijaya</li>
-                            <li>UPN "Veteran" Yogyakarta</li>
-                            <li>Universitas Sebelas Maret</li>
-                            <li>Universitas Jenderal Soedirman</li>
-                        </ol>
-                        <div class="is-one-fifth">
+                                                <div class="tile is-child main-tab-content" id="statistik-nilai-rataan-diterima-tertinggi">
+                            <div id="statistik-nilai-rataan-diterima-tertinggi-title">
+                                <h2>Daftar PTN dengan Nilai Rataan Diterima Tertinggi</h2>
+                            </div>
+                            <!-- Tab links -->
+                            <div class="tab" id="statistik-nilai-rataan-diterima-tertinggi-tab">
+                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-saintek')">Saintek</button>
+                                <button class="tablinks" onclick="openList(event, 'statistik-nilai-rataan-diterima-tertinggi-soshum')">Soshum</button>
+                            </div>
+                            <!-- Tab content -->
+                            <div style="height:400px;">
+                                <div id="statistik-nilai-rataan-diterima-tertinggi-saintek" class="tabcontent">
+                                    <div class="is-one-fifth">
+                                    </div>
+                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-saintek-list" type="1">
+                                        <li>Institut Teknologi Bandung</li>
+                                        <li>Universitas Indonesia</li>
+                                        <li>Universitas Gajah Mada</li>
+                                        <li>Institut Teknologi Sepuluh Nopember</li>
+                                        <li>Universitas Airlangga</li>
+                                        <li>Universitas Padjadjaran</li>
+                                        <li>Universitas Diponegoro</li>
+                                        <li>Institut Pertanian Bogor</li>
+                                        <li>Universitas Sebelas Maret</li>
+                                        <li>UPN "Veteran" Yogyakarta</li>
+                                    </ol>
+                                    <div class="is-one-fifth">
+                                    </div>
+                                </div>
+                                <div id="statistik-nilai-rataan-diterima-tertinggi-soshum" class="tabcontent">
+                                    <div class="is-one-fifth">
+                                    </div>
+                                    <ol class="is-three-fifths" id="statistik-nilai-rataan-diterima-tertinggi-soshum-list" type="1">
+                                        <li>Universitas Indonesia</li>
+                                        <li>Universitas Gajah Mada</li>
+                                        <li>Institut Teknologi Bandung</li>
+                                        <li>Universitas Padjadjaran</li>
+                                        <li>Universitas Airlangga</li>
+                                        <li>Universitas Diponegoro</li>
+                                        <li>Universitas Brawijaya</li>
+                                        <li>UPN "Veteran" Yogyakarta</li>
+                                        <li>Universitas Sebelas Maret</li>
+                                        <li>Universitas Jenderal Soedirman</li>
+                                    </ol>
+                                    <div class="is-one-fifth">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="templates" style="display: none;">
-    <div class="picto" style="display: none;">
-        <img src="img/clip.png" height="100%">
-    </div>
-</div>
-<!-- D3.js Source -->
-<script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-<script src="https://d3js.org/topojson.v3.min.js"></script>
-<script
-src="https://code.jquery.com/jquery-1.12.4.min.js"
-integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
-<!-- Script -->
-<script type="text/javascript" src="js/picto.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
-<!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
-<script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
-<script type="text/javascript" src="js/nv.d3.js"></script>
-<script type="text/javascript" src="js/side-facts.js"></script>
-</body>
+        <div id="templates" style="display: none;">
+            <div class="picto" style="display: none;">
+                <img src="img/clip.png" height="100%">
+            </div>
+        </div>
+
+        <!-- D3.js Source -->
+        <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+        <script src="https://d3js.org/topojson.v3.min.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <script type="text/javascript" src="https://cdn.rawgit.com/darsain/sly/master/dist/sly.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.0.4/fuse.js"></script>
+        <!-- Script -->
+        <script type="text/javascript" src="js/picto.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <!-- <script type="text/javascript" src="js/d3/d3.min.js"></script> -->
+        <script type="text/javascript" src="js/d3v3.5.17/d3.v3.min.js"></script>
+        <script type="text/javascript" src="js/nv.d3.js"></script>
+        <script type="text/javascript" src="js/side-facts.js"></script>
+    </body>
 </html>

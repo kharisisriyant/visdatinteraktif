@@ -22,6 +22,11 @@ body {
   height: 100%;
 }
 
+svg.nvd3-svg {
+  height: auto;
+  overflow-y: auto;
+}
+
 .scrollbar {
   height: 10px;
 }
@@ -262,4 +267,13 @@ label {
 
 .js-example-basic-single option{
 	font-size: 12px;
+}
+
+/*#top-prodi-chart{
+  overflow-y: scroll;
+  overflow-x: scroll;
+}*/
+
+.tabs{
+  overflow: hidden;
 }

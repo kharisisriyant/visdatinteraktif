@@ -55,6 +55,18 @@ function wrapLabelText() {
 var updateTopProdiChart = function(data){
   var data = data;
   var chart;
+
+
+  var data_size = data[0].values.length;
+
+  var modified_height;
+  if(data_size > 5){
+    modified_height = 45 * data_size + 5;
+  }
+  else{
+    modified_height = 250;
+  }
+
   nv.addGraph(function() {
     chart = nv.models.multiBarHorizontalChart()
         .x(function(d) { return d.label })
@@ -65,13 +77,14 @@ var updateTopProdiChart = function(data){
               var colors = d3v3.scale.category20().range().slice(3);
               return colors[i % colors.length-1];
           })
+        .height(modified_height)
         .showControls(false)
         .stacked(true)
         .showLegend(false)
     ;        //Allow user to switch between "Grouped" and "Stacked" mode.
     chart.tooltip.enabled();
-    chart.yAxis
-        .tickFormat(d3v3.format('d'));
+    // chart.yAxis
+    //     .tickFormat(d3v3.format('d'));
 
     d3v3.select('#top-prodi-chart svg')
         .datum(data)
@@ -193,8 +206,8 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .duration(300)
           // .margin({bottom: 100, left: 70})
           .groupSpacing(0.1)
-          // .width(100)
-          // .height(300)
+          .width(350)
+          .height(300)
           .showYAxis(true)
           .showXAxis(true)
           .reduceXTicks(true)

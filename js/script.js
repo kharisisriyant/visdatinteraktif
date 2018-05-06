@@ -380,8 +380,7 @@ function recolorMapWithCondition(condition) {
     populationData[d.Provinsi] += parseInt(d.Jumlah);
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
     totalTerima += parseInt(d.Jumlah);
-    if (prodiSet[d.Prodi] == null) {
-      console.log(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
+    if (prodiSet[d.Prodi] == null && kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat != null) {
       totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
       prodiSet[d.Prodi] = true;
     }

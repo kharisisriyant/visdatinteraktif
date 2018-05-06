@@ -211,10 +211,6 @@ body {
   margin: 1px;
 }
 
-#picto {
-  float: right;
-}
-
 #expected {
   text-align: center;
   float: left;

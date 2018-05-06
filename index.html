@@ -87,7 +87,7 @@
                         <div class="tabs">
                             <ul>
                                 <li class="main-tab-link is-active" onClick="openMainTab(event, 'top-prodi')"><a>Statistik Prodi</a></li>
-                                <li class="main-tab-link" onClick="openMainTab(event, 'statistik-kelompok-pilihan-ujian')"><a>Statistik Kelompok</a></li>
+                                <li class="main-tab-link" onClick="openMainTab(event, 'statistik-kelompok-pilihan-ujian')"><a>Statistik Pengelompokan Pendaftar</a></li>
                                 <li class="main-tab-link" onClick="openMainTab(event, 'statistik-nilai-rataan-diterima-tertinggi')"><a>Top Ten</a></li>
                             </ul>
                         </div>
@@ -130,12 +130,10 @@
                         </div>
                     </div>
                     <div class="tile is-child main-tab-content" id="statistik-kelompok-pilihan-ujian">
-                        <div id="statistik-kelompok-pilihan-ujian-title">
-                            <h2>Statistik Pengelompokan Pendaftar</h2>
-                        </div>
+                        
                         <div id="statistik-kelompok-pilihan-ujian-filter">
-                            Tampilkan chart berdasarkan kelompok:
-                            <select class="js-example-basic-single js-states form-control not-search-selectbox" id="statistik-kelompok-pilihan-ujian-select">
+                            Tampilkan chart berdasarkan kelompok
+                            <select class="borderless-medium" id="statistik-kelompok-pilihan-ujian-select">
                                 <option value="1">Pilihan</option>
                                 <option value="2">Ujian</option>
                             </select>

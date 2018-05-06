@@ -39,7 +39,7 @@ function wrapLabelText() {
       line.push(word);
       tspan.text(line.join(" "));
       // TDOD : Make 80 a dynamic value based on the bar width/height
-      if (tspan.node().getComputedTextLength() > 150) {
+      if (tspan.node().getComputedTextLength() > 130) {
         line.pop();
         tspan.text(line.join(" "));
         line = [word];
@@ -59,7 +59,7 @@ var updateTopProdiChart = function(data){
     chart = nv.models.multiBarHorizontalChart()
         .x(function(d) { return d.label })
         .y(function(d) { return d.value })
-        .margin({top: 30, right: 20, bottom: 50, left: 150})
+        .margin({top: 0, right: 14, bottom: 14, left: 150})
         .showValues(true)           //Show bar value next to each bar.
         .barColor(function (d, i) {
               var colors = d3v3.scale.category20().range().slice(3);

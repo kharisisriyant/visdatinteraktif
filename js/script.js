@@ -178,7 +178,7 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
   g.selectAll("path")
     .append("title")
     .text(function(d) {
-      return d.properties.province + " : " + populationData[d.properties.province];
+      return d.properties.province + " : " + populationData[d.properties.province] + " mahasiswa";
     });
 
   initSly();
@@ -459,7 +459,7 @@ function recolorMapWithCondition(condition) {
   g.selectAll("path")
     .select("title")
     .text(function(d) {
-      return d.properties.province + " : " + populationData[d.properties.province];
+      return d.properties.province + " : " + populationData[d.properties.province] + " mahasiswa";
     });
 
 }

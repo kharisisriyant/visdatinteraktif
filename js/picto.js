@@ -43,7 +43,7 @@ function displayPictogram(num) {
   }
 }
 
-function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
+function drawPictos (univName, prodiName, acceptedNum, registeredNum, univLink) {
   $exp.empty();
   $unexp.empty();
 
@@ -55,7 +55,11 @@ function drawPictos (univName, prodiName, acceptedNum, registeredNum) {
   // console.log("acceptedNum, registeredNum: " + acceptedNum + ", " + registeredNum);
   var numPictoOver = Math.round(registeredNum / acceptedNum);
 
-  $univ.innerHTML = univName;
+  if (univLink != null) {
+    $univ.innerHTML = "<a href=\"" + univLink + "\" target=\"_blank\">" + univName + "</a>";
+  } else {
+    $univ.innerHTML = univName;
+  }
   if (prodiName == null) {
     $prodi.innerHTML = "";
   } else {

@@ -112,7 +112,6 @@ function ready(error, idnSpatialData, sbmptnDataResult, kodeProdiResult, logoURL
 
   // Population data
   var populationData = {};
-  console.log("ASDASD")
   sbmptnData = sbmptnDataResult;
   sbmptnData.removeIf(function(d) {
     return kodeProdi.dataByKodeProdi[d.Prodi] == null;
@@ -232,7 +231,6 @@ function initSly() {
 
 function selectUniv(eventName, itemIndex) {
   $('#allUniv').addClass('is-outlined')
-  console.log($(slyelement.obj.items[itemIndex].el).find("p").text());
   var selectedUniv = $(slyelement.obj.items[itemIndex].el).find("p").text();
   var kodeUniv;
   kodeProdi.dataByKodePTN.forEach(function(d, kode) {
@@ -254,8 +252,6 @@ function selectUniv(eventName, itemIndex) {
 function registerSemuaUnivButton() {
   $('#allUniv').on('click', function(e) {
     $('#allUniv').removeClass('is-outlined')
-    console.log($(slyelement.el).find('.active'))
-    console.log(slyelement.obj.rel.activeItem)
     $(slyelement.el).find('.active').removeClass('active')
     slyelement.obj.reload()
 
@@ -282,7 +278,6 @@ function registerSearchBar() {
 
 
 function filterSly(searchString) {
-  console.log(slyelement.obj.items.length);
   slyelement.obj.rel.activeItem = null;
   while (slyelement.obj.items.length != 0) {
     slyelement.obj.remove(0);
@@ -291,8 +286,6 @@ function filterSly(searchString) {
 }
 
 function fuzzySearch(searchString) {
-  console.log("SEARCH")
-
   var fuseOptions = {
     shouldSort: true,
     threshold: 0,
@@ -356,7 +349,6 @@ function recolorMapWithCondition(condition) {
   var totalTerima = 0;
   var totalPeminat = 0;
   var prodiSet = [];
-  console.log("Recolor");
   sbmptnData.forEach(function(d) { 
     if (populationData[d.Provinsi] == null) {
       populationData[d.Provinsi] = 0
@@ -385,8 +377,6 @@ function recolorMapWithCondition(condition) {
     populationData[d.Provinsi] += parseInt(d.Jumlah);
     maxPop = maxPop < populationData[d.Provinsi] ? populationData[d.Provinsi] : maxPop;
     totalTerima += parseInt(d.Jumlah);
-    console.log(d.Prodi)
-    console.log(totalPeminat)
     if (prodiSet[d.Prodi] == null) {
         totalPeminat += parseInt(kodeProdi.dataByKodeProdi[d.Prodi].jumlahPeminat)
         prodiSet[d.Prodi] = true;

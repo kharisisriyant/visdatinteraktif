@@ -347,7 +347,7 @@ function fuzzySearch(searchString) {
       $('<figure>', { class: 'image is-128x128 is-vertical-center'}).append(
         $('<img>').attr("style","width: auto; height: 100%; display: block; margin: 0 auto;").attr("data-src","img/logo-univ/" + logoURL[d.name])
       ),
-      $('<p>', {class: 'content has-text-centered', html: d.name})
+      $('<p>', {class: 'content has-text-centered is-size-6', html: d.name})
     )
     el.on('click', function(e) {
       if (el.hasClass('active') || slyelement.obj.rel.activeItem == null) {

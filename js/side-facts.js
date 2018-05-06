@@ -24,7 +24,22 @@ $(document).ready(function() {
   updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
   initialMainTab('top-prodi');
 })
-  
+
+var ID = d3v3.locale({
+          "decimal": ",",
+          "thousands": ".",
+          "grouping": [3],
+          "currency": ["", "Rp"],
+          "dateTime": "%a %b %e %X %Y",
+          "date": "%d/%m/%Y",
+          "time": "%H:%M:%S",
+          "periods": ["AM", "PM"],
+          "days": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
+          "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+          "months": ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+          "shortMonths": ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agus", "Sep", "Okt", "Nov", "Des"]
+        })
+
 function wrapLabelText() {
   d3.selectAll(".nv-x.nv-axis .tick text").each(function(i, e) {
     var text = d3.select(this),
@@ -100,7 +115,7 @@ var updateTopProdiChart = function(data){
               return d.value;
             }
             else{
-              return (d.value * 100);
+              return d.value;
             }
           })
         .margin({top: 0, right: 14, bottom: 14, left: 150})
@@ -121,17 +136,17 @@ var updateTopProdiChart = function(data){
     
     if(key == 1){
       chart.yAxis
-        .tickFormat(d3v3.format('d'))
+        .tickFormat(ID.numberFormat(",."))
       ;
     }
     else if(key == 2){
       chart.yAxis
-        .tickFormat(d3v3.format('d'))
+        .tickFormat(ID.numberFormat(",."))
       ;
     }
     else if(key == 3){
       chart.yAxis
-        .tickFormat(d3v3.format('.2f'))
+        .tickFormat(ID.numberFormat(".2%"))
       ;
     } 
 
@@ -259,12 +274,11 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .height(300)
           .showYAxis(true)
           .showXAxis(true)
-          .reduceXTicks(true)
           .staggerLabels(true)
       ;
 
       chart.yAxis
-        .tickFormat(d3v3.format('d'))
+        .tickFormat(ID.numberFormat(",."))
         .axisLabel('JUMLAH PENDAFTAR')
       ;
 

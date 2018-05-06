@@ -270,10 +270,14 @@ label {
 	font-size: 12px;
 }
 
-/*#top-prodi-chart{
-  overflow-y: scroll;
-  overflow-x: scroll;
-}*/
+div#top-prodi-chart{
+  height: 280px;
+  overflow-y: auto;
+}
+
+#top-prodi-chart-svg{
+  height: 250px;
+}
 
 .tabs{
   overflow: hidden;

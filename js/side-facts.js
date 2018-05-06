@@ -61,11 +61,13 @@ var updateTopProdiChart = function(data){
 
   var modified_height;
   if(data_size > 5){
-    modified_height = 45 * data_size + 5;
+    modified_height = 90 * data_size + 5;
   }
   else{
     modified_height = 250;
   }
+
+  $("#top-prodi-chart-svg").css("height", modified_height + "px");
 
   var key;
   if(data[0].key == "Jumlah Pendaftar"){

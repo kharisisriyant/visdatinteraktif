@@ -564,7 +564,7 @@ function reloadStatistikProdi() {
             ratio: true
           }
         }
-        method = "Keketatan"
+        method = "Persentase Jumlah Peserta yang Diterima / Jumlah Peminat"
         break;
     default:
       isCancel = true;

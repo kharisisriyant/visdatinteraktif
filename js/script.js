@@ -271,7 +271,8 @@ function initSly() {
   slyelement.obj.init();
   
   lazyload = new LazyLoad({
-    elements_selector: ".lazyload"
+    elements_selector: ".lazyload",
+    class_loading: "spinner"
   });
   slyelement.obj.on('moveEnd', function() {
     lazyload.update()
@@ -540,7 +541,7 @@ function reloadStatistikProdi() {
         sbmptnDataCondition = function (i, repeatedProdi, prevData) {
           return prevData + parseInt(sbmptnData[i].Jumlah);
         }
-        method = "Jumlah Pendaftar"
+        method = "Jumlah Peserta yang Diterima"
         break;
     case "2":
         sbmptnDataCondition = function (i, repeatedProdi, prevData) {

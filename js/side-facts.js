@@ -67,10 +67,46 @@ var updateTopProdiChart = function(data){
     modified_height = 250;
   }
 
+  var key;
+  if(data[0].key == "Jumlah Pendaftar"){
+    key = 1;
+  }
+  else if(data[0].key == "Jumlah Peminat"){
+    key = 2;
+  }
+  else if(data[0].key == "Keketatan"){
+    key = 3;
+  }
+
+  for(i=0; i < data[0].values.length; i++){
+    console.log(data[0].values[i].value);
+    if((data[0].values[i].value == Infinity) || (data[0].values[i].value == null)){
+
+      if((key == 1) || (key == 2)){
+        data[0].values[i].value = 0;
+      }
+      else{
+        data[0].values[i].value = 1;
+      }
+    }
+  }
+
   nv.addGraph(function() {
     chart = nv.models.multiBarHorizontalChart()
         .x(function(d) { return d.label })
-        .y(function(d) { return d.value })
+        .y(function(d) {
+            if((key == 1) || (key == 2)){
+              return d.value;
+            }
+            else{
+              if(d.value == null){
+                return 100;
+              }
+              else{
+                return (d.value * 100);
+              }
+            }
+          })
         .margin({top: 0, right: 14, bottom: 14, left: 150})
         .showValues(true)           //Show bar value next to each bar.
         .barColor(function (d, i) {
@@ -81,10 +117,31 @@ var updateTopProdiChart = function(data){
         .showControls(false)
         .stacked(true)
         .showLegend(false)
-    ;        //Allow user to switch between "Grouped" and "Stacked" mode.
+    ;
+
     chart.tooltip.enabled();
-    // chart.yAxis
-    //     .tickFormat(d3v3.format('d'));
+    
+    if((key == 1) || (key == 2)){
+      chart.yAxis
+        .tickFormat(d3v3.format('d'))
+      ;
+      if(key == 1){
+        chart.yAxis
+          .axisLabel("Jumlah Peserta yang Diterima")
+        ;
+      }
+      else{
+        chart.yAxis
+          .axisLabel("Jumlah Peminat")
+        ;
+      }
+    }
+    else{
+      chart.yAxis
+        .tickFormat(d3v3.format('.2f'))
+        .axisLabel("Persentase Keketatan")
+      ;
+    } 
 
     d3v3.select('#top-prodi-chart svg')
         .datum(data)
@@ -276,13 +333,6 @@ function openMainTab(evt, listName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";
     evt.currentTarget.className += " is-active";
-
-    if (listName == "top-prodi") {
-      reloadStatistikProdi();
-    } else if (listName == "statistik-kelompok-pilihan-ujian") {
-      updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
-    }
-
 }
 
 function initialMainTab(listName) {
@@ -306,5 +356,11 @@ function initialMainTab(listName) {
 
     // var classname = $($('.box > .tabs .main-tab-link')[0]).attr("class");
     $($('.box > .tabs .main-tab-link')[0]).addClass("is-active");
+
+    if (listName == "top-prodi") {
+      reloadStatistikProdi();
+    } else if (listName == "statistik-kelompok-pilihan-ujian") {
+      updateKelompokPilihanUjianChart($('#statistik-kelompok-pilihan-ujian-select').val());
+    }
 
 }

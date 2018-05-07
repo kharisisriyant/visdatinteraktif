@@ -125,7 +125,7 @@ var updateTopProdiChart = function(data){
               return colors[i % colors.length-1];
           })
         .height(modified_height)
-        .width(340)
+        .width($('#top-prodi').width()-30)
         .showControls(false)
         .stacked(true)
         .showLegend(false)
@@ -156,6 +156,7 @@ var updateTopProdiChart = function(data){
 
     nv.utils.windowResize(function() {
       chart.update();
+      chart.width($('#top-prodi').width()-30)
       wrapLabelText();
     });
 
@@ -270,7 +271,7 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .duration(300)
           // .margin({bottom: 100, left: 70})
           .groupSpacing(0.1)
-          .width(350)
+          .width($('#top-prodi').width()-30)
           .height(300)
           .showYAxis(true)
           .showXAxis(true)
@@ -286,7 +287,10 @@ var updateKelompokPilihanUjianChart = function(kelompok){
           .datum(data)
           .call(chart);
 
-      nv.utils.windowResize(chart.update);
+      nv.utils.windowResize(function() {
+        chart.update();
+        chart.width($('#top-prodi').width()-30);
+      });
 
       return chart;
   });
